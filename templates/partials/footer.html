@@ -1,0 +1,43 @@
+{% load vet_icons %}
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--start">
+      <p class="site-footer__addr">
+        <span class="site-footer__contact-ico" aria-hidden="true">{% icon 'pin' 18 %}</span>
+        <span>{{ site.address }}</span>
+      </p>
+      <a href="tel:{{ site.phone_primary }}" class="site-footer__phone">
+        <span class="site-footer__contact-ico" aria-hidden="true">{% icon 'phone' 18 %}</span>
+        <span>{{ site.phone_primary|format_phone }}</span>
+      </a>
+    </div>
+
+    <div class="site-footer__col site-footer__col--center">
+      <div class="site-footer__social" aria-label="Дзвінок та соціальні мережі">
+        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+          {% icon 'instagram' 20 %}
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="Telegram">
+          {% icon 'telegram' 20 %}
+        </a>
+        <a
+          href="tel:{{ site.phone_primary }}"
+          class="site-footer__call"
+          aria-label="Подзвонити в клініку"
+        >
+          {% icon 'phone' 20 %}
+        </a>
+      </div>
+      <p class="site-footer__credit">
+        Розроблено <a href="https://www.prometeylabs.com/" target="_blank" rel="noopener noreferrer">PrometeyLabs</a>
+      </p>
+    </div>
+
+    <div class="site-footer__col site-footer__col--end">
+      <nav class="site-footer__legal" aria-label="Правова інформація">
+        <a href="{% url 'clinic:privacy_policy' %}">Політика конфіденційності</a>
+        <a href="{% url 'clinic:public_offer' %}">Договір публічної оферти</a>
+      </nav>
+    </div>
+  </div>
+</footer>

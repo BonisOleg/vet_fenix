@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static vet_icons %}
+
+{% block title %}Контакти · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section page-section page-section--contacts">
+  <span class="lime-tag" data-reveal>Контакти</span>
+  <h1 class="page-heading" data-reveal>Звʼяжіться з нами</h1>
+  <p class="page-lead-inline" data-reveal>Адреса, телефони та форма звернення.</p>
+
+  {% if messages %}
+  <div class="form-flash" role="status" data-reveal>
+    {% for message in messages %}
+    <p class="form-flash__text">{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="contacts-layout" data-reveal>
+    <div class="contact-block contact-block--page">
+      <h2 class="contact-block__title">Клініка</h2>
+      {% include 'clinic/partials/contact_info.html' %}
+    </div>
+
+    <div class="contact-form-wrap contact-block--page">
+      <h2 class="contact-block__title">Написати нам</h2>
+      <form class="contact-form" method="post" action="{% url 'clinic:contacts' %}">
+        {% csrf_token %}
+        <div class="field">
+          <label for="id_name">{{ form.name.label }}</label>
+          {{ form.name }}
+          {% if form.name.errors %}<p class="field-error">{{ form.name.errors.0 }}</p>{% endif %}
+        </div>
+        <div class="field">
+          <label for="id_phone">{{ form.phone.label }}</label>
+          {{ form.phone }}
+          {% if form.phone.errors %}<p class="field-error">{{ form.phone.errors.0 }}</p>{% endif %}
+        </div>
+        <div class="field">
+          <label for="id_message">{{ form.message.label }}</label>
+          {{ form.message }}
+          {% if form.message.errors %}<p class="field-error">{{ form.message.errors.0 }}</p>{% endif %}
+        </div>
+        <button type="submit" class="btn btn-accent contact-form__submit">Надіслати</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="map-embed" data-reveal>
+    <iframe
+      title="Карта — {{ site.address }}"
+      src="https://maps.google.com/maps?q={{ map_query|urlencode }}&amp;hl=uk&amp;z=16&amp;output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'js/motion.js' %}" defer></script>
+{% endblock %}

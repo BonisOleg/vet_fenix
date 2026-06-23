@@ -1,0 +1,48 @@
+{% load static vet_icons vet_static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{% block title %}{{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/nav.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/buttons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/hero.css' %}">
+  <link rel="stylesheet" href="{% static_v 'css/components/cards.css' %}">
+  <link rel="stylesheet" href="{% static_v 'css/components/motion.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/forms.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/callback-modal.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+  {% block page_css %}{% endblock %}
+</head>
+<body class="site {% block body_class %}{% endblock %}">
+  {% block header %}{% include 'partials/header.html' %}{% endblock %}
+  {% if site.is_open_now %}
+  <div class="trust-strip">
+    <strong>{{ site.trust_label }}</strong>
+    <span class="trust-strip__sep" aria-hidden="true"></span>
+    <span class="trust-strip__addr">{{ site.address|address_short }}</span>
+  </div>
+  {% endif %}
+  {% include 'partials/mobile_menu.html' %}
+  {% include 'partials/callback_modal.html' %}
+  <main class="site-main" id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+  {% include 'partials/footer.html' %}
+  {% include 'partials/bottom_nav.html' %}
+  <script src="{% static 'django_htmx/htmx.min.js' %}" defer></script>
+  <script src="{% static 'js/nav.js' %}" defer></script>
+  <script src="{% static 'js/callback-modal.js' %}" defer></script>
+  {% block page_js %}{% endblock %}
+</body>
+</html>

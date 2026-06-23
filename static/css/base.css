@@ -1,0 +1,63 @@
+body.site {
+  font-family: var(--font);
+  background-color: var(--page-bg);
+  color: var(--graphite);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--appbar-height);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+body.site:not(.site--home) {
+  box-shadow: inset 0 var(--appbar-height) 0 0 var(--appbar-surface);
+}
+
+body.site:not(.site--home) .site-main {
+  background-color: var(--page-bg);
+  background-image: linear-gradient(
+    180deg,
+    var(--appbar-surface) 0,
+    color-mix(in srgb, var(--appbar-surface) 40%, var(--page-bg)) 96px,
+    var(--page-bg) 168px
+  );
+  background-repeat: no-repeat;
+}
+
+.site-main {
+  flex: 1;
+  padding-bottom: calc(var(--nav-height) + var(--safe-bottom));
+}
+
+:where(.site) button {
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field-error {
+  color: var(--orange);
+  font-size: 12px;
+  margin-top: 4px;
+  padding: 0 18px;
+}
+
+.form-errors {
+  margin: 0 18px 12px;
+  padding: 12px 14px;
+  background: var(--orange-soft);
+  border-radius: var(--r-md);
+  font-size: 13px;
+  color: var(--graphite);
+}
+
+.form-errors ul {
+  list-style: disc;
+  padding-left: 18px;
+}

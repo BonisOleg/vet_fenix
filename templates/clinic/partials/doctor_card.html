@@ -1,0 +1,31 @@
+{% load vet_icons %}
+<article class="doc-card{% if card_variant == 'page' %} doc-card--page{% endif %}" data-reveal="emphasis"
+  data-reveal-delay="{{ reveal_delay }}">
+  <div class="doc-photo">
+    <div class="doc-photo__frame">
+      {% if doctor.photo %}
+      <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}">
+      {% else %}
+      <span class="initials" aria-hidden="true">{{ doctor.display_initials }}</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="doc-info">
+    <div class="name">{{ doctor.name }}</div>
+    <div class="spec">{{ doctor.specialization }}</div>
+    {% if card_variant == 'page' %}
+    {% if doctor.bio %}
+    <p class="doc-bio">{{ doctor.bio }}</p>
+    {% endif %}
+    {% endif %}
+    <div class="doc-meta">
+      <span class="doc-meta__rating">
+        {% icon 'star' 14 %}
+        <span>{{ doctor.rating|floatformat:1 }}</span>
+      </span>
+    </div>
+    <a href="{% url 'bookings:booking' %}?doctor={{ doctor.slug }}" class="book-btn">
+      Записатись
+    </a>
+  </div>
+</article>

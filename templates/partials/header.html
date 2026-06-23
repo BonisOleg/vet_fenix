@@ -1,0 +1,42 @@
+{% load vet_icons %}
+<header class="appbar">
+  <div class="appbar-inner">
+    <a href="{% url 'clinic:home' %}" class="logo">
+      <div class="logo-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M10.5 4h3a1.5 1.5 0 011.5 1.5v3.5H19a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-4v3.5A1.5 1.5 0 0113.5 20h-3a1.5 1.5 0 01-1.5-1.5v-3.5H5A1.5 1.5 0 013.5 13.5v-3A1.5 1.5 0 015 9h4V5.5A1.5 1.5 0 0110.5 4z"
+          />
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-l1">{{ site.clinic_name_line1 }}</span>
+        <span class="brand-l2">{{ site.clinic_name_line2 }}</span>
+      </div>
+    </a>
+    <nav class="site-nav-desktop" aria-label="Головна навігація">
+      <a href="{% url 'clinic:home' %}" class="{% if active_nav == 'home' %}is-active{% endif %}">Головна</a>
+      <a href="{% url 'clinic:services' %}" class="{% if active_nav == 'services' %}is-active{% endif %}">Послуги</a>
+      <a href="{% url 'clinic:doctors' %}" class="{% if active_nav == 'doctors' %}is-active{% endif %}">Лікарі</a>
+      <a href="{% url 'clinic:contacts' %}" class="{% if active_nav == 'contacts' %}is-active{% endif %}">Контакти</a>
+    </nav>
+    <div class="appbar-actions">
+      <a href="tel:{{ site.phone_primary }}" class="appbar-phone">
+        {% icon 'phone' 16 %}
+        <span>{{ site.phone_primary|format_phone }}</span>
+      </a>
+      <a href="{% url 'bookings:booking' %}" class="btn btn-accent btn-sm appbar-cta">Записатись</a>
+    </div>
+    <button
+      type="button"
+      class="icon-btn appbar-menu-btn"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Відкрити меню"
+    >
+      {% icon 'menu' 18 %}
+    </button>
+  </div>
+</header>

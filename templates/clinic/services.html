@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static vet_icons %}
+
+{% block title %}Послуги · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section page-section page-section--services">
+  <span class="lime-tag" data-reveal>Послуги</span>
+  <h1 class="page-heading" data-reveal>Все, що потрібно вашому улюбленцю</h1>
+  <p class="page-lead-inline" data-reveal>Повний перелік послуг клініки з детальним описом.</p>
+  <div class="svc-grid svc-grid--page">
+    {% for service in services %}
+    <article class="svc-card svc-card--page svc-card--flip{% if service.is_urgent %} is-urgent{% endif %}" data-reveal data-reveal-delay="{% widthratio forloop.counter 1 80 %}">
+      <div class="svc-card__flip">
+        <div class="svc-card__face svc-card__face--front">
+          <div class="svc-icon">{% icon service.icon 18 %}</div>
+          <div class="svc-card__body">
+            <div class="svc-name">{{ service.name }}</div>
+            <div class="svc-sub">{{ service.short_description }}{% if service.price_hint %} · {{ service.price_hint }}{% endif %}</div>
+            <p class="svc-card__desc">{{ service.full_description }}</p>
+            {% if service.bullets %}
+            <ul class="svc-card__bullets">
+              {% for bullet in service.bullets %}
+              <li>{{ bullet }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <a href="{% url 'bookings:booking' %}?service={{ service.slug }}" class="btn btn-accent btn-sm svc-card__cta">
+              Записатись {% icon 'arrow-right' 14 %}
+            </a>
+          </div>
+        </div>
+        <div class="svc-card__face svc-card__face--back">
+          <div class="svc-icon">{% icon service.icon 18 %}</div>
+          <div class="svc-name">{{ service.name }}</div>
+          {% if service.price_hint %}
+          <p class="svc-card__back-price">{{ service.price_hint }}</p>
+          {% endif %}
+          <p class="svc-card__back-lead">Запишіться на прийом онлайн — швидко та без черг.</p>
+          <a href="{% url 'bookings:booking' %}?service={{ service.slug }}" class="btn btn-accent svc-card__back-cta">
+            Записатись {% icon 'arrow-right' 14 %}
+          </a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'js/motion.js' %}" defer></script>
+{% endblock %}

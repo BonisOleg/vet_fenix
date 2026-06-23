@@ -1,0 +1,89 @@
+:root {
+  --lime: #D4F08A;
+  --lime-dark: #C4E676;
+  --lime-soft: #EFF6C8;
+  --graphite: #1A1D23;
+  --graphite-block: #2E3340;
+  --graphite-2: #2A2F38;
+  --graphite-3: #4A5260;
+  --orange: #FF7A45;
+  --orange-soft: #FFE4D6;
+  --cream: #F7F6F2;
+  --paper: #FFFFFF;
+  --border: #E8E7E1;
+  --border-strong: #D5D3CB;
+  --muted: #6B6F76;
+  --muted-2: #9BA0A8;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --font: 'Manrope', -apple-system, system-ui, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --nav-height: 80px;
+  --appbar-height: calc(56px + var(--safe-top));
+  --hero-appbar-gap: 20px;
+  --anchor-offset: calc(76px + var(--safe-top));
+  --page-gutter: 20px;
+  --page-max: 1120px;
+  --page-bg: #E8EAEE;
+  --hero-bg: #ECEEF2;
+  --hero-bg-start: #FFFFFF;
+  --hero-bg-mid: #F4F5F7;
+  --appbar-surface: var(--hero-bg-mid);
+  --hero-bg-end: var(--page-bg);
+  --hero-blob-light: rgba(255, 255, 255, 0.72);
+  --hero-blob-gray: rgba(241, 243, 247, 0.88);
+  --hero-blob-soft: rgba(232, 235, 240, 0.6);
+  --hero-grid-dot: rgba(26, 29, 35, 0.038);
+  --hero-surface-color: var(--hero-bg-end);
+  --hero-surface-dots: radial-gradient(circle at 1px 1px, var(--hero-grid-dot) 1px, transparent 0);
+  --hero-surface-gradient: linear-gradient(
+    148deg,
+    var(--hero-bg-start) 0%,
+    var(--hero-bg-mid) 44%,
+    var(--hero-bg-end) 76%,
+    var(--hero-bg-end) 100%
+  );
+  --hero-bottom-fade: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 46%,
+    color-mix(in srgb, var(--hero-surface-color) 22%, transparent) 72%,
+    color-mix(in srgb, var(--hero-surface-color) 55%, transparent) 88%,
+    var(--hero-surface-color) 100%
+  );
+  --hero-surface-image: var(--hero-surface-dots), var(--hero-surface-gradient);
+  --hero-surface-dots-size: 26px 26px;
+  --hero-surface-size: var(--hero-surface-dots-size), 100% 100%;
+  --photo-placeholder-bg: #D4DAE3;
+  --photo-placeholder-initials: #8B95A3;
+  --brand-line-gradient: linear-gradient(
+    90deg,
+    var(--lime) 0%,
+    var(--lime-dark) 38%,
+    var(--orange) 100%
+  );
+  --brand-line-gradient-shift: linear-gradient(
+    90deg,
+    var(--lime) 0%,
+    var(--lime-dark) 22%,
+    var(--orange) 44%,
+    var(--lime-dark) 66%,
+    var(--lime) 88%,
+    var(--orange) 100%
+  );
+  --hero-decor-lime: color-mix(in srgb, var(--lime-soft) 88%, var(--lime) 12%);
+  --hero-decor-orange: color-mix(in srgb, var(--orange-soft) 90%, var(--orange) 10%);
+  --hero-decor-paw: color-mix(in srgb, #E8B4C4 42%, var(--lime-soft) 58%);
+  --hero-decor-opacity: 0.72;
+}

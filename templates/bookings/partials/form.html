@@ -1,0 +1,92 @@
+<form
+  class="booking-form"
+  method="post"
+  action="{% url 'bookings:booking_submit' %}"
+  hx-post="{% url 'bookings:booking_submit' %}"
+  hx-target="#booking-root"
+  hx-swap="innerHTML"
+>
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+  <div class="booking-form__errors form-errors" role="alert">
+    {{ form.non_field_errors }}
+  </div>
+  {% endif %}
+
+  <div class="booking-form__cards">
+    <section class="booking-form__card" aria-labelledby="booking-section-service">
+      <h2 class="booking-form__section-title" id="booking-section-service">
+        <span class="booking-form__step" aria-hidden="true">1</span>
+        Послуга
+      </h2>
+      <div class="field">
+        <label for="id_service">Оберіть послугу</label>
+        {{ form.service }}
+        {% if form.service.errors %}<p class="field-error">{{ form.service.errors.0 }}</p>{% endif %}
+      </div>
+    </section>
+
+    <section class="booking-form__card" aria-labelledby="booking-section-schedule">
+      <h2 class="booking-form__section-title" id="booking-section-schedule">
+        <span class="booking-form__step" aria-hidden="true">2</span>
+        Лікар і час
+      </h2>
+      <div class="field">
+        <label for="id_doctor">Лікар (необовʼязково)</label>
+        {{ form.doctor }}
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="id_preferred_date">Дата</label>
+          {{ form.preferred_date }}
+          {% if form.preferred_date.errors %}<p class="field-error">{{ form.preferred_date.errors.0 }}</p>{% endif %}
+        </div>
+        <div class="field">
+          <label for="id_preferred_time">Час</label>
+          {{ form.preferred_time }}
+          {% if form.preferred_time.errors %}<p class="field-error">{{ form.preferred_time.errors.0 }}</p>{% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="booking-form__card" aria-labelledby="booking-section-contact">
+      <h2 class="booking-form__section-title" id="booking-section-contact">
+        <span class="booking-form__step" aria-hidden="true">3</span>
+        Про вас і улюбленця
+      </h2>
+      <div class="field">
+        <label for="id_owner_name">Ваше імʼя</label>
+        {{ form.owner_name }}
+        {% if form.owner_name.errors %}<p class="field-error">{{ form.owner_name.errors.0 }}</p>{% endif %}
+      </div>
+      <div class="field">
+        <label for="id_phone">Телефон</label>
+        {{ form.phone }}
+        {% if form.phone.errors %}<p class="field-error">{{ form.phone.errors.0 }}</p>{% endif %}
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="id_pet_type">Тварина</label>
+          {{ form.pet_type }}
+          {% if form.pet_type.errors %}<p class="field-error">{{ form.pet_type.errors.0 }}</p>{% endif %}
+        </div>
+        <div class="field">
+          <label for="id_pet_name">Кличка</label>
+          {{ form.pet_name }}
+        </div>
+      </div>
+      <div class="field">
+        <label for="id_comment">Коментар</label>
+        {{ form.comment }}
+      </div>
+    </section>
+  </div>
+
+  <div class="booking-form__actions">
+    <button type="submit" class="btn btn-primary btn-block btn-lg">
+      Надіслати заявку
+    </button>
+    <p class="booking-form__note">Адміністратор зателефонує для підтвердження запису.</p>
+  </div>
+</form>

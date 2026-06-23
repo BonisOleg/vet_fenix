@@ -1,0 +1,37 @@
+{% load vet_icons %}
+<div class="booking-success">
+  <div class="booking-success__icon" aria-hidden="true">{% icon 'check' 36 %}</div>
+  <h2 class="booking-success__title">Заявку прийнято</h2>
+  <p class="booking-success__lead">Ми звʼяжемося з вами для підтвердження часу прийому.</p>
+
+  <div class="booking-success__summary">
+    <div class="booking-success__row">
+      <span class="booking-success__label">Послуга</span>
+      <span class="booking-success__value">{{ appointment.service.name }}</span>
+    </div>
+    {% if appointment.doctor %}
+    <div class="booking-success__row">
+      <span class="booking-success__label">Лікар</span>
+      <span class="booking-success__value">{{ appointment.doctor.name }}</span>
+    </div>
+    {% endif %}
+    <div class="booking-success__row">
+      <span class="booking-success__label">Коли</span>
+      <span class="booking-success__value">{{ appointment.preferred_date|date:'d.m.Y' }} · {{ appointment.preferred_time }}</span>
+    </div>
+    <div class="booking-success__row">
+      <span class="booking-success__label">Контакт</span>
+      <span class="booking-success__value">
+        {{ appointment.owner_name }}
+        <small>{{ appointment.phone }}</small>
+      </span>
+    </div>
+  </div>
+
+  <div class="booking-success__actions">
+    <a href="tel:{{ site.phone_primary }}" class="btn btn-accent btn-block btn-lg">
+      {% icon 'phone' 16 %} Подзвонити в клініку
+    </a>
+    <a href="{% url 'clinic:home' %}" class="btn btn-ghost btn-block">На головну</a>
+  </div>
+</div>

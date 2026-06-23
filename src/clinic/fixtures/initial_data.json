@@ -1,0 +1,489 @@
+[
+  {
+    "model": "core.sitesettings",
+    "pk": 1,
+    "fields": {
+      "clinic_name_line1": "Ветеринарна клініка",
+      "clinic_name_line2": "«Фенікс»",
+      "tagline": "",
+      "address": "м. Київ, вул. Ірпінська, 67б",
+      "phone_primary": "+380933839933",
+      "phone_secondary": "+380983839033",
+      "email": "",
+      "hero_title": "Турбота про ваших улюбленців — цілодобово",
+      "hero_lead": "Ветеринарна клініка «Фенікс» надає широкий спектр послуг для Ваших домашніх улюбленців. Наші фахівці працюють за актуальними протоколами, спираючись на доказову медицину. Клініка забезпечена новітнім обладнанням, що допомагає у швидкій діагностиці пацієнтів. З основних переваг — цілодобовий стаціонар інтенсивної терапії та реанімації. Постійне навчання, поглиблення знань та навичок персоналу, використання сучасних методів діагностики — шлях до успіху у лікуванні Ваших хвостиків.",
+      "hero_stat_number": "24/7",
+      "hero_stat_label": "стаціонар інтенсивної терапії",
+      "is_open_now": true,
+      "trust_label": "Працюємо зараз",
+      "hours_label": "Цілодобово"
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 1,
+    "fields": {
+      "slug": "surgery",
+      "name": "Хірургія",
+      "short_description": "Планові та екстрені операції",
+      "full_description": "Хірургічне лікування будь-якої складності: від мʼяких тканин до ортопедії. Сучасна операційна, безпечний наркоз і післяопераційний догляд.",
+      "price_hint": "",
+      "icon": "scissors",
+      "bullets": [
+        "Передопераційна діагностика",
+        "Безпечний наркоз",
+        "Сучасна операційна",
+        "Післяопераційний догляд"
+      ],
+      "is_urgent": false,
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 2,
+    "fields": {
+      "slug": "therapy",
+      "name": "Терапія",
+      "short_description": "Огляд та лікування",
+      "full_description": "Первинний огляд, діагностика гострих та хронічних захворювань, складання плану лікування та спостереження за станом тварини.",
+      "price_hint": "",
+      "icon": "stethoscope",
+      "bullets": [
+        "Огляд лікаря",
+        "Діагностика на місці",
+        "План лікування",
+        "Контрольний візит"
+      ],
+      "is_urgent": false,
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 3,
+    "fields": {
+      "slug": "intensive",
+      "name": "Інтенсивна терапія",
+      "short_description": "Цілодобовий стаціонар",
+      "full_description": "Власний цілодобовий стаціонар інтенсивної терапії та реанімації. Постійний моніторинг стану пацієнта у критичні періоди.",
+      "price_hint": "",
+      "icon": "stethoscope",
+      "bullets": [
+        "Цілодобовий нагляд",
+        "Реанімація",
+        "Моніторинг стану",
+        "Інфузійна терапія"
+      ],
+      "is_urgent": true,
+      "order": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 4,
+    "fields": {
+      "slug": "dental",
+      "name": "Стоматологія",
+      "short_description": "Чистка та лікування зубів",
+      "full_description": "Ультразвукова чистка, лікування та видалення зубів, стоматологічні процедури під легким наркозом.",
+      "price_hint": "",
+      "icon": "tooth",
+      "bullets": [
+        "Ультразвукова чистка",
+        "Лікування зубів",
+        "Видалення",
+        "Контроль ясен"
+      ],
+      "is_urgent": false,
+      "order": 4,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 5,
+    "fields": {
+      "slug": "visual-diag",
+      "name": "Візуальна діагностика",
+      "short_description": "УЗД, рентген, КТ",
+      "full_description": "Ультразвукова діагностика, цифровий рентген та інші методи візуалізації для точного виявлення захворювань.",
+      "price_hint": "",
+      "icon": "scan",
+      "bullets": [
+        "УЗД",
+        "Цифровий рентген",
+        "Ехокардіографія",
+        "Результати у день звернення"
+      ],
+      "is_urgent": false,
+      "order": 5,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 6,
+    "fields": {
+      "slug": "endoscopy",
+      "name": "Ендоскопія",
+      "short_description": "Внутрішній огляд",
+      "full_description": "Ендоскопічне дослідження органів шлунково-кишкового тракту та дихальних шляхів для точної діагностики без оперативного втручання.",
+      "price_hint": "",
+      "icon": "scan",
+      "bullets": [
+        "Гастроскопія",
+        "Колоноскопія",
+        "Бронхоскопія",
+        "Мінімально інвазивно"
+      ],
+      "is_urgent": false,
+      "order": 6,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 7,
+    "fields": {
+      "slug": "vaccine",
+      "name": "Вакцинація",
+      "short_description": "Щеплення та паспорт",
+      "full_description": "Комплексні щеплення для собак і котів. Вакцинація від сказу, ведення ветеринарного паспорта.",
+      "price_hint": "",
+      "icon": "syringe",
+      "bullets": [
+        "Огляд перед щепленням",
+        "Сертифіковані вакцини",
+        "Запис у ветпаспорт",
+        "Нагадування про ревакцинацію"
+      ],
+      "is_urgent": false,
+      "order": 7,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 8,
+    "fields": {
+      "slug": "cardiology",
+      "name": "Кардіологія",
+      "short_description": "Діагностика серця",
+      "full_description": "Діагностика та лікування захворювань серцево-судинної системи. ЕКГ, ехокардіографія та моніторинг серцевої діяльності.",
+      "price_hint": "",
+      "icon": "stethoscope",
+      "bullets": [
+        "ЕКГ",
+        "Ехокардіографія",
+        "Холтер-моніторинг",
+        "План лікування"
+      ],
+      "is_urgent": false,
+      "order": 8,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 9,
+    "fields": {
+      "slug": "laboratory",
+      "name": "Лабораторія",
+      "short_description": "Аналізи та дослідження",
+      "full_description": "Власна лабораторія: клінічні, біохімічні та спеціальні аналізи. Швидкі результати для оперативного прийняття рішень.",
+      "price_hint": "",
+      "icon": "scan",
+      "bullets": [
+        "Клінічні аналізи",
+        "Біохімія крові",
+        "Цитологія",
+        "Результати у день звернення"
+      ],
+      "is_urgent": false,
+      "order": 9,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 10,
+    "fields": {
+      "slug": "endocrinology",
+      "name": "Ендокринологія",
+      "short_description": "Гормональні розлади",
+      "full_description": "Діагностика та лікування ендокринних захворювань: цукровий діабет, гіпотиреоз, синдром Кушинга та інші.",
+      "price_hint": "",
+      "icon": "stethoscope",
+      "bullets": [
+        "Гормональні аналізи",
+        "Діагностика діабету",
+        "План терапії",
+        "Контроль стану"
+      ],
+      "is_urgent": false,
+      "order": 10,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.service",
+    "pk": 11,
+    "fields": {
+      "slug": "dermatology",
+      "name": "Дерматологія",
+      "short_description": "Шкіра та шерсть",
+      "full_description": "Діагностика та лікування захворювань шкіри, шерсті та кігтів. Алергії, дерматити, паразитарні ураження.",
+      "price_hint": "",
+      "icon": "stethoscope",
+      "bullets": [
+        "Огляд шкіри",
+        "Соскопи",
+        "Алергологічні тести",
+        "План лікування"
+      ],
+      "is_urgent": false,
+      "order": 11,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 1,
+    "fields": {
+      "slug": "veronika-volodymyrivna",
+      "name": "Вероніка Володимирівна",
+      "specialization": "Цитолог, анестезіолог",
+      "experience_years": 5,
+      "initials": "ВВ",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 2,
+    "fields": {
+      "slug": "oleksandra-serhiivna",
+      "name": "Олександра Сергіївна",
+      "specialization": "Кардіолог, анестезіолог",
+      "experience_years": 5,
+      "initials": "ОС",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 3,
+    "fields": {
+      "slug": "anastasiia-volodymyrivna",
+      "name": "Анастасія Володимирівна",
+      "specialization": "Лікар-терапевт",
+      "experience_years": 5,
+      "initials": "АВ",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 4,
+    "fields": {
+      "slug": "maksym-viktorovych",
+      "name": "Максим Вікторович",
+      "specialization": "Терапевт, дерматолог, онколог",
+      "experience_years": 5,
+      "initials": "МВ",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 4,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 5,
+    "fields": {
+      "slug": "yelyzaveta-oleksandrivna",
+      "name": "Єлизавета Олександрівна",
+      "specialization": "Дерматолог",
+      "experience_years": 5,
+      "initials": "ЄО",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 5,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 6,
+    "fields": {
+      "slug": "liliia-ivanivna",
+      "name": "Лілія Іванівна",
+      "specialization": "Терапевт, ендокринолог",
+      "experience_years": 5,
+      "initials": "ЛІ",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 6,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 7,
+    "fields": {
+      "slug": "hryhorii-oleksandrovych",
+      "name": "Григорій Олександрович",
+      "specialization": "Ортопед, хірург",
+      "experience_years": 5,
+      "initials": "ГО",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 7,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 8,
+    "fields": {
+      "slug": "hanna-oleksandrivna",
+      "name": "Ганна Олександрівна",
+      "specialization": "Хірург, терапевт, онколог",
+      "experience_years": 5,
+      "initials": "ГА",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 8,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 9,
+    "fields": {
+      "slug": "daryna-serhiivna",
+      "name": "Дарина Сергіївна",
+      "specialization": "Терапевт, нефролог",
+      "experience_years": 5,
+      "initials": "ДС",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 9,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 10,
+    "fields": {
+      "slug": "svitlana-serhiivna",
+      "name": "Світлана Сергіївна",
+      "specialization": "Стоматолог",
+      "experience_years": 5,
+      "initials": "СС",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 10,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 11,
+    "fields": {
+      "slug": "kseniia-serhiivna",
+      "name": "Ксенія Сергіївна",
+      "specialization": "Візуальна діагностика, лабораторна діагностика",
+      "experience_years": 5,
+      "initials": "КС",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 11,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.doctor",
+    "pk": 12,
+    "fields": {
+      "slug": "ivan-leonidovych",
+      "name": "Іван Леонідович",
+      "specialization": "Лікар-інфекціоніст",
+      "experience_years": 5,
+      "initials": "ІЛ",
+      "photo": "",
+      "rating": "4.9",
+      "patients_label": "",
+      "order": 12,
+      "is_active": true
+    }
+  },
+  {
+    "model": "clinic.advantage",
+    "pk": 1,
+    "fields": {
+      "icon": "clock",
+      "title": "Цілодобовий стаціонар",
+      "description": "Завдяки власному стаціонару інтенсивної терапії ви можете бути впевнені: ваш улюбленець ніколи не залишиться без уваги у скрутну хвилину.",
+      "order": 1,
+      "is_alt": false
+    }
+  },
+  {
+    "model": "clinic.advantage",
+    "pk": 2,
+    "fields": {
+      "icon": "shield",
+      "title": "Сучасне обладнання",
+      "description": "Клініка забезпечена новітнім обладнанням, що допомагає у швидкій діагностиці пацієнтів.",
+      "order": 2,
+      "is_alt": false
+    }
+  },
+  {
+    "model": "clinic.advantage",
+    "pk": 3,
+    "fields": {
+      "icon": "star",
+      "title": "Доказова медицина",
+      "description": "Наші фахівці працюють за актуальними міжнародними протоколами, спираючись на доказову медицину.",
+      "order": 3,
+      "is_alt": false
+    }
+  },
+  {
+    "model": "clinic.advantage",
+    "pk": 4,
+    "fields": {
+      "icon": "heart",
+      "title": "Навчання персоналу",
+      "description": "Постійне навчання, поглиблення знань та навичок персоналу, використання сучасних методів діагностики.",
+      "order": 4,
+      "is_alt": true
+    }
+  }
+]

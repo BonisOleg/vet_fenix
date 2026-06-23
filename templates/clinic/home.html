@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static vet_icons %}
+
+{% block body_class %}site--home{% endblock %}
+
+{% block page_css %}
+{% load vet_static %}
+<link rel="stylesheet" href="{% static_v 'css/pages/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero" id="home">
+  {% include 'partials/hero_decor.html' %}
+  <div class="hero__layout">
+    <div class="hero__inner">
+      <div class="hero__content" data-reveal>
+        <h1>{{ site.hero_title }}</h1>
+        <p class="lead">{{ site.hero_lead }}</p>
+      </div>
+    </div>
+    <div class="hero__bottom">
+      <div class="hero__cta-row">
+        <div class="hero-actions">
+          <a href="{% url 'bookings:booking' %}" class="btn btn-primary btn-lg">
+            <span class="accent">Записатись</span><span class="hero-actions__suffix"> онлайн</span> {% icon 'arrow-right' 16 %}
+          </a>
+          <a href="tel:{{ site.phone_primary }}" class="btn btn-ghost btn-lg hero-actions__phone" aria-label="Подзвонити">
+            {% icon 'phone' 20 %}
+            <span class="hero-actions__phone-text">Подзвонити</span>
+          </a>
+        </div>
+      </div>
+      <figure class="hero__pet" data-reveal data-reveal-delay="80">
+        <picture>
+          <source srcset="{% static 'img/hero/cat.webp' %}" type="image/webp">
+          <img class="hero__pet-img" src="{% static 'img/hero/cat.png' %}" alt="Шотландський кіт — улюбленець клініки"
+            width="768" height="512" loading="eager" decoding="async">
+        </picture>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="perevahy">
+  <h2 data-reveal="emphasis">Чому обирають «Фенікс»</h2>
+  <div class="adv-list">
+    {% for adv in advantages %}
+    <article class="adv-card{% if adv.is_alt %} is-alt{% endif %}" data-reveal="emphasis"
+      data-reveal-delay="{% widthratio forloop.counter 1 150 %}">
+      <div class="ico">{% icon adv.icon 18 %}</div>
+      <div class="t">{{ adv.title }}</div>
+      <div class="d">{{ adv.description }}</div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section" id="poslugy">
+  <span class="lime-tag" data-reveal>Послуги</span>
+  <h2 data-reveal>Наші послуги</h2>
+  <p class="section-more"><a href="{% url 'clinic:services' %}">Детальніше →</a></p>
+  <p class="svc-expand-hint" data-reveal>Натисніть послугу, щоб переглянути деталі.</p>
+  <div class="svc-list">
+    {% for service in services %}
+    <article class="svc-row" id="service-{{ service.slug }}" data-reveal
+      data-reveal-delay="{% widthratio forloop.counter 1 100 %}">
+      <button type="button" class="svc-row-head" hx-get="{% url 'clinic:service_detail' service.slug %}"
+        hx-target="#panel-{{ service.slug }}" hx-swap="innerHTML" data-service-toggle aria-expanded="false"
+        aria-controls="panel-{{ service.slug }}">
+        <span class="svc-icon-sm{% if service.is_urgent %} is-urgent{% endif %}">
+          {% icon service.icon 18 %}
+        </span>
+        <span class="svc-text">
+          <span class="name">{{ service.name }}</span>
+          <span class="price">{{ service.short_description }}{% if service.price_hint %} · {{ service.price_hint }}{% endif %}</span>
+        </span>
+        <span class="caret">{% icon 'caret' 20 %}</span>
+      </button>
+      <div id="panel-{{ service.slug }}" class="svc-row-panel" role="region" aria-live="polite"></div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section section--doctors" id="likari">
+  <header class="docs-header">
+    <div class="docs-header__title">
+      <span class="lime-tag" data-reveal>Команда</span>
+      <h2 data-reveal>Лікарі, яким довіряють</h2>
+      <p class="section-more"><a href="{% url 'clinic:doctors' %}">Детальніше →</a></p>
+    </div>
+    <p class="docs-header__note">{{ doctors_section_note }}</p>
+  </header>
+  <div class="docs-grid">
+    {% for doctor in doctors %}
+    {% widthratio forloop.counter 1 150 as reveal_delay %}
+    {% include 'clinic/partials/doctor_card.html' with doctor=doctor card_variant='home' reveal_delay=reveal_delay %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+{% load vet_static %}
+<script src="{% static_v 'js/motion.js' %}" defer></script>
+<script src="{% static 'js/services.js' %}" defer></script>
+{% endblock %}

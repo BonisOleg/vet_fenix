@@ -1,0 +1,28 @@
+{% if request.resolver_match.url_name != 'booking' %}
+<div class="callback-modal" id="callback-modal" hidden>
+  <div class="callback-modal__backdrop" data-callback-close tabindex="-1" aria-hidden="true"></div>
+  <div class="callback-modal__stage">
+    <div
+      class="callback-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="callback-modal-title"
+    >
+      <button
+        type="button"
+        class="callback-modal__close"
+        data-callback-close
+        aria-label="Закрити"
+      >
+        <span class="callback-modal__close-icon" aria-hidden="true"></span>
+      </button>
+      <h2 class="callback-modal__title" id="callback-modal-title">
+        Заповніть форму і наш менеджер звʼяжеться з вами
+      </h2>
+      <div id="callback-modal-root">
+        {% include 'bookings/partials/callback_form.html' with form=callback_form %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static vet_icons %}
+
+{% block title %}Політика конфіденційності · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/legal.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section page-section page-section--legal">
+  <span class="lime-tag" data-reveal>Правова інформація</span>
+  <h1 class="page-heading" data-reveal>Політика конфіденційності</h1>
+  <p class="page-lead-inline" data-reveal>
+    Як ми збираємо, використовуємо та захищаємо ваші персональні дані.
+  </p>
+
+  <p class="legal-intro" data-reveal data-reveal-delay="80">
+    Ця політика описує, як {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}
+    збирає та обробляє персональні дані відвідувачів сайту та клієнтів клініки.
+  </p>
+
+  <div class="legal-highlights" data-reveal data-reveal-delay="100">
+    <article class="legal-highlight">
+      <div class="legal-highlight__icon">{% icon 'user' 20 %}</div>
+      <h3 class="legal-highlight__title">Мінімум даних</h3>
+      <p class="legal-highlight__text">Збираємо лише те, що потрібно для запису та зворотного звʼязку.</p>
+    </article>
+    <article class="legal-highlight">
+      <div class="legal-highlight__icon">{% icon 'shield' 20 %}</div>
+      <h3 class="legal-highlight__title">Захист інформації</h3>
+      <p class="legal-highlight__text">Не передаємо дані третім особам без вашої згоди.</p>
+    </article>
+    <article class="legal-highlight">
+      <div class="legal-highlight__icon">{% icon 'scan' 20 %}</div>
+      <h3 class="legal-highlight__title">Прозорі cookies</h3>
+      <p class="legal-highlight__text">Технічні cookies — лише для безпеки та коректної роботи сайту.</p>
+    </article>
+  </div>
+
+  <div class="legal-blocks">
+    <article class="legal-block" data-reveal data-reveal-delay="150">
+      <div class="legal-block__head">
+        <div class="legal-block__icon">{% icon 'user' 20 %}</div>
+        <h2>Які дані ми збираємо</h2>
+      </div>
+      <p>
+        Під час запису на прийом або звернення через форму контактів ми можемо отримувати
+        імʼя, номер телефону, email та повідомлення, які ви надсилаєте добровільно.
+      </p>
+    </article>
+
+    <article class="legal-block" data-reveal data-reveal-delay="200">
+      <div class="legal-block__head">
+        <div class="legal-block__icon">{% icon 'shield' 20 %}</div>
+        <h2>Мета обробки</h2>
+      </div>
+      <p>
+        Дані використовуються для підтвердження запису, зворотного звʼязку з вами та
+        покращення якості обслуговування. Ми не передаємо персональні дані третім особам
+        без вашої згоди, окрім випадків, передбачених законодавством України.
+      </p>
+    </article>
+
+    <article class="legal-block" data-reveal data-reveal-delay="250">
+      <div class="legal-block__head">
+        <div class="legal-block__icon legal-block__icon--alt">{% icon 'scan' 20 %}</div>
+        <h2>Cookies</h2>
+      </div>
+      <p>
+        Сайт може використовувати технічні cookies для коректної роботи сесії та безпеки
+        (зокрема CSRF). Аналітичні cookies застосовуються лише за наявності відповідних
+        налаштувань.
+      </p>
+    </article>
+
+    <article class="legal-block" data-reveal data-reveal-delay="300">
+      <div class="legal-block__head">
+        <div class="legal-block__icon">{% icon 'phone' 20 %}</div>
+        <h2>Контакти</h2>
+      </div>
+      <p>
+        З питань щодо персональних даних звертайтесь за телефоном
+        <a href="tel:{{ site.phone_primary }}">{{ site.phone_primary|format_phone }}</a>
+        {% if site.email %}або на email <a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'js/motion.js' %}" defer></script>
+{% endblock %}

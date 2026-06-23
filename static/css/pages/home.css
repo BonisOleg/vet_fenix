@@ -1,0 +1,103 @@
+#perevahy {
+  padding-top: 32px;
+}
+
+@media (max-width: 767px) {
+  #perevahy {
+    margin-top: 0;
+    padding-top: 12px;
+  }
+}
+
+#perevahy h2 {
+  margin-bottom: 22px;
+}
+
+.docs-header {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 767px) {
+  .section--doctors {
+    overflow: hidden;
+  }
+
+  .section--doctors .docs-header {
+    margin-bottom: 10px;
+  }
+
+  .section--doctors .section-more {
+    margin-bottom: 8px;
+  }
+}
+
+.docs-header__title h2 {
+  margin: 0;
+}
+
+.docs-header__note {
+  display: none;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  #perevahy {
+    padding-top: 56px;
+  }
+
+  .section--doctors {
+    padding: 32px 24px 24px;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-right: 24px;
+  }
+
+  .docs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    padding-right: 0;
+    margin-bottom: 24px;
+  }
+
+  .docs-header__note {
+    display: block;
+    flex: 0 1 min(560px, 58%);
+    max-width: 58%;
+    text-align: right;
+  }
+}
+
+.section-more {
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+
+.section-more a {
+  font-weight: 600;
+  color: var(--graphite-3);
+}
+
+.section-more a:hover {
+  color: var(--graphite);
+}
+
+.svc-expand-hint {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+.svc-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.htmx-request .svc-row-head .caret {
+  opacity: 0.4;
+}

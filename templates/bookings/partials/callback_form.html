@@ -1,0 +1,39 @@
+<form
+  class="callback-form"
+  method="post"
+  action="{% url 'bookings:callback_submit' %}"
+  hx-post="{% url 'bookings:callback_submit' %}"
+  hx-target="#callback-modal-root"
+  hx-swap="innerHTML"
+>
+  {% csrf_token %}
+
+  <div class="field-row callback-form__row">
+    <div class="field">
+      <label class="visually-hidden" for="id_name">Ваше імʼя</label>
+      {{ form.name }}
+      {% if form.name.errors %}<p class="field-error">{{ form.name.errors.0 }}</p>{% endif %}
+    </div>
+    <div class="field">
+      <label class="visually-hidden" for="id_phone">Номер телефону</label>
+      {{ form.phone }}
+      {% if form.phone.errors %}<p class="field-error">{{ form.phone.errors.0 }}</p>{% endif %}
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="visually-hidden" for="id_service">Послуга</label>
+    {{ form.service }}
+    {% if form.service.errors %}<p class="field-error">{{ form.service.errors.0 }}</p>{% endif %}
+  </div>
+
+  <div class="field">
+    <label class="visually-hidden" for="id_comment">Коментар</label>
+    {{ form.comment }}
+    {% if form.comment.errors %}<p class="field-error">{{ form.comment.errors.0 }}</p>{% endif %}
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block callback-form__submit">
+    Записатися
+  </button>
+</form>

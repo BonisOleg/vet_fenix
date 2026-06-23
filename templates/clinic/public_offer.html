@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static vet_icons %}
+
+{% block title %}Договір публічної оферти · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/legal.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section page-section page-section--legal">
+  <span class="lime-tag" data-reveal>Правова інформація</span>
+  <h1 class="page-heading" data-reveal>Договір публічної оферти</h1>
+  <p class="page-lead-inline" data-reveal>
+    Умови надання ветеринарних послуг та порядок запису через сайт.
+  </p>
+
+  <p class="legal-intro" data-reveal data-reveal-delay="80">
+    Цей документ є публічною офертою {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}
+    щодо надання ветеринарних послуг на умовах, викладених нижче.
+  </p>
+
+  <div class="legal-highlights" data-reveal data-reveal-delay="100">
+    <article class="legal-highlight">
+      <div class="legal-highlight__icon">{% icon 'calendar' 20 %}</div>
+      <h3 class="legal-highlight__title">Онлайн-запис</h3>
+      <p class="legal-highlight__text">Заявка через сайт — швидкий спосіб обрати зручний час прийому.</p>
+    </article>
+    <article class="legal-highlight">
+      <div class="legal-highlight__icon">{% icon 'shield' 20 %}</div>
+      <h3 class="legal-highlight__title">Медичні стандарти</h3>
+      <p class="legal-highlight__text">Послуги надаються відповідно до професійних норм ветеринарної медицини.</p>
+    </article>
+    <article class="legal-highlight">
+      <div class="legal-highlight__icon">{% icon 'check' 20 %}</div>
+      <h3 class="legal-highlight__title">Прозора оплата</h3>
+      <p class="legal-highlight__text">Орієнтовні ціни на сайті; фінальна вартість — після огляду тварини.</p>
+    </article>
+  </div>
+
+  <div class="legal-blocks">
+    <article class="legal-block" data-reveal data-reveal-delay="150">
+      <div class="legal-block__head">
+        <div class="legal-block__icon">{% icon 'stethoscope' 20 %}</div>
+        <h2>Предмет договору</h2>
+      </div>
+      <p>
+        Клініка надає ветеринарні послуги відповідно до обраного напряму та погодженого
+        з адміністратором часу прийому. Заявка через сайт є запитом на запис, який
+        підтверджується співробітником клініки.
+      </p>
+    </article>
+
+    <article class="legal-block" data-reveal data-reveal-delay="200">
+      <div class="legal-block__head">
+        <div class="legal-block__icon">{% icon 'wallet' 20 %}</div>
+        <h2>Вартість та оплата</h2>
+      </div>
+      <p>
+        Орієнтовні ціни на послуги вказані на сайті. Фінальна вартість визначається після
+        огляду тварини та погодження плану лікування. Оплата здійснюється згідно з
+        правилами клініки на місці або іншим узгодженим способом.
+      </p>
+    </article>
+
+    <article class="legal-block" data-reveal data-reveal-delay="250">
+      <div class="legal-block__head">
+        <div class="legal-block__icon legal-block__icon--alt">{% icon 'shield' 20 %}</div>
+        <h2>Відповідальність</h2>
+      </div>
+      <p>
+        Клініка надає послуги відповідно до професійних стандартів ветеринарної медицини.
+        Власник тварини зобовʼязаний надавати достовірну інформацію про стан здоровʼя
+        улюбленця та дотримуватись рекомендацій лікаря.
+      </p>
+    </article>
+
+    <article class="legal-block" data-reveal data-reveal-delay="300">
+      <div class="legal-block__head">
+        <div class="legal-block__icon">{% icon 'pin' 20 %}</div>
+        <h2>Контакти</h2>
+      </div>
+      <p>
+        Адреса: {{ site.address }}. Телефон:
+        <a href="tel:{{ site.phone_primary }}">{{ site.phone_primary|format_phone }}</a>.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'js/motion.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static vet_icons %}
+
+{% block title %}Запис · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
+
+{% block body_class %}booking-page{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/booking.css' %}">
+{% endblock %}
+
+{% block header %}
+<header class="appbar appbar--back">
+  <a href="{% url 'clinic:home' %}" class="icon-btn" aria-label="Назад">
+    {% icon 'arrow-left' 18 %}
+  </a>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="section page-section page-section--booking">
+  <div class="booking-layout">
+    <div class="booking-layout__main">
+      <span class="lime-tag" data-reveal>Онлайн-запис</span>
+      <h1 class="page-heading" data-reveal>Запис на прийом</h1>
+      <p class="page-lead-inline" data-reveal>Залиште заявку — адміністратор підтвердить час.</p>
+
+      <div id="booking-root" data-reveal data-reveal-delay="150">
+        {% include 'bookings/partials/form.html' %}
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'js/motion.js' %}" defer></script>
+<script src="{% static 'js/booking.js' %}" defer></script>
+{% endblock %}

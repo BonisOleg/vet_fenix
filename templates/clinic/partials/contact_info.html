@@ -1,0 +1,24 @@
+<div class="contact-row">
+  <span class="lab">Адреса</span>
+  <span class="val">{{ site.address }}</span>
+</div>
+<div class="contact-row">
+  <span class="lab">Телефон</span>
+  <a href="tel:{{ site.phone_primary }}" class="val">{{ site.phone_primary }}</a>
+</div>
+{% if site.phone_secondary %}
+<div class="contact-row">
+  <span class="lab">Ще</span>
+  <a href="tel:{{ site.phone_secondary }}" class="val">{{ site.phone_secondary }}</a>
+</div>
+{% endif %}
+<div class="contact-row">
+  <span class="lab">Години</span>
+  <span class="val">{{ site.hours_label }}</span>
+</div>
+{% if site.email %}
+<div class="contact-row">
+  <span class="lab">Email</span>
+  <a href="mailto:{{ site.email }}" class="val">{{ site.email }}</a>
+</div>
+{% endif %}

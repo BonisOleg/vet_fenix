@@ -1,0 +1,12 @@
+{% load vet_icons %}
+<div class="desc">{{ service.full_description }}</div>
+{% if service.bullets %}
+<ul>
+  {% for bullet in service.bullets %}
+  <li>{{ bullet }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<a href="{% url 'bookings:booking' %}?service={{ service.slug }}" class="btn btn-accent btn-sm row-cta">
+  Записатись {% icon 'arrow-right' 14 %}
+</a>

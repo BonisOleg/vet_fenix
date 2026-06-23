@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Лікарі · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
+
+{% block page_css %}
+{% load vet_static %}
+<link rel="stylesheet" href="{% static_v 'css/pages/doctors.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="section page-section page-section--doctors">
+  <span class="lime-tag" data-reveal>Команда</span>
+  <h1 class="page-heading" data-reveal>Лікарі, яким довіряють</h1>
+  <p class="page-lead-inline" data-reveal>{{ doctors_section_note }}</p>
+  <div class="docs-grid docs-grid--page">
+    {% for doctor in doctors %}
+    {% widthratio forloop.counter 1 100 as reveal_delay %}
+    {% include 'clinic/partials/doctor_card.html' with doctor=doctor card_variant='page' reveal_delay=reveal_delay %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+
+{% block page_js %}
+{% load vet_static %}
+<script src="{% static_v 'js/motion.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,1011 @@
+.hero {
+  position: relative;
+  overflow-x: clip;
+  overflow-y: visible;
+  isolation: isolate;
+  color: var(--graphite);
+  min-height: clamp(400px, 70vh, 560px);
+  background-color: var(--hero-surface-color);
+  background-image: var(--hero-surface-image);
+  background-size: var(--hero-surface-size);
+}
+
+.site--home.site {
+  padding-top: 0;
+  background-color: var(--hero-surface-color);
+}
+
+.site--home .site-main {
+  background-color: var(--hero-surface-color);
+  background-image: var(--hero-surface-dots);
+  background-size: var(--hero-surface-dots-size);
+}
+
+
+.site--home .hero {
+  margin-top: calc(-1 * var(--appbar-height));
+  padding-top: calc(var(--appbar-height) + var(--hero-appbar-gap));
+  background-color: transparent;
+  background-image: var(--hero-bottom-fade), var(--hero-surface-gradient);
+  background-size: 100% 100%, 100% 100%;
+}
+
+.site--home .hero::before {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -25% -15% -32% -15%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 52% 44% at 10% 24%, var(--hero-blob-light) 0%, transparent 72%),
+    radial-gradient(ellipse 46% 40% at 90% 78%, var(--hero-blob-gray) 0%, transparent 70%),
+    radial-gradient(ellipse 32% 28% at 68% 6%, var(--hero-blob-soft) 0%, transparent 66%);
+}
+
+.hero__layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: end;
+  gap: 8px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  min-height: inherit;
+  padding: 24px var(--page-gutter) 16px;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero__cta-row {
+  display: contents;
+}
+
+.hero__content {
+  max-width: 36em;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 8.5vw, 36px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin: 0 0 12px;
+  color: var(--graphite);
+}
+
+.hero h1 .accent {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--graphite);
+  padding: 0 8px 2px;
+  border-radius: 8px;
+}
+
+.hero p.lead {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  max-width: 36em;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.hero-actions .btn-primary {
+  flex: 1 1 180px;
+}
+
+.hero-actions__phone-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero__pet {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  width: 100%;
+  align-self: end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero__pet picture {
+  display: block;
+  line-height: 0;
+}
+
+.hero__pet-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: min(52vh, 360px);
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --hero-appbar-gap: 10px;
+  }
+
+  .hero {
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .site--home .site-main {
+    background-size: 22px 22px;
+  }
+
+  .site--home.site {
+    padding-top: var(--appbar-height);
+  }
+
+  .site--home .hero {
+    min-height: 0;
+    margin-top: 0;
+    padding-top: var(--hero-appbar-gap);
+    padding-bottom: 16px;
+    background-image:
+      linear-gradient(to bottom,
+        transparent 0%,
+        transparent 42%,
+        color-mix(in srgb, var(--hero-surface-color) 24%, transparent) 72%,
+        color-mix(in srgb, var(--hero-surface-color) 55%, transparent) 90%,
+        var(--hero-surface-color) 100%),
+      var(--hero-surface-gradient);
+  }
+
+  .site--home .hero::before {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 100%);
+  }
+
+  .hero::before {
+    inset: -22% -16% -28% -16%;
+    background:
+      radial-gradient(ellipse 72% 52% at 0% 12%, var(--hero-blob-light) 0%, transparent 76%),
+      radial-gradient(ellipse 64% 48% at 100% 88%, var(--hero-blob-gray) 0%, transparent 74%);
+  }
+
+  .hero__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 var(--page-gutter) 16px;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .hero__inner {
+    gap: 0;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 3;
+    max-width: none;
+  }
+
+  .hero h1 {
+    max-width: none;
+    font-size: clamp(24px, 7vw, 30px);
+    line-height: 1.05;
+    margin: 0 0 10px;
+    scroll-margin-top: calc(var(--appbar-height) + var(--hero-appbar-gap));
+  }
+
+  .hero p.lead {
+    max-width: none;
+    font-size: 13px;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .hero__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero__cta-row {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+  }
+
+  .hero-actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 0;
+  }
+
+  .hero-actions__suffix {
+    display: none;
+  }
+
+  .hero-actions .btn-primary {
+    flex: 0 0 auto;
+    min-height: 0;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--graphite);
+    background: transparent;
+    border-radius: 0;
+    transform: none;
+  }
+
+  .hero-actions .btn-primary .accent {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--graphite);
+    padding: 0 8px 2px;
+    border-radius: 8px;
+  }
+
+  .hero-actions .btn-primary:hover {
+    background: transparent;
+    color: var(--graphite-2);
+  }
+
+  .hero-actions .btn-primary:active {
+    transform: none;
+    opacity: 0.82;
+  }
+
+  .hero-actions .btn-primary .icon {
+    display: none;
+  }
+
+  .hero-actions__phone {
+    --phone-ring: 3px;
+    flex: 0 0 auto;
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+    min-height: 56px;
+    margin-left: auto;
+    padding: 0;
+    border: var(--phone-ring) solid transparent;
+    border-radius: 50%;
+    background:
+      linear-gradient(var(--paper), var(--paper)) padding-box,
+      var(--brand-line-gradient) border-box;
+    box-shadow:
+      0 2px 8px rgba(26, 29, 35, 0.06),
+      0 10px 28px rgba(26, 29, 35, 0.1);
+    color: var(--graphite);
+  }
+
+  .hero-actions__phone:hover {
+    background:
+      linear-gradient(var(--cream), var(--cream)) padding-box,
+      var(--brand-line-gradient) border-box;
+    color: var(--graphite);
+  }
+
+  .hero-actions__phone:active {
+    box-shadow:
+      0 1px 4px rgba(26, 29, 35, 0.08),
+      0 4px 12px rgba(26, 29, 35, 0.08);
+  }
+
+  .hero-actions__phone .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero-actions__phone .icon :is(path, circle) {
+    stroke-width: 2.25;
+  }
+
+  .hero__pet {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: min(100%, 360px);
+    margin: 0 auto;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .hero__pet picture {
+    display: block;
+    width: 100%;
+    line-height: 0;
+  }
+
+  .hero__pet-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: clamp(240px, 70vw, 360px);
+    margin: 0;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --hero-appbar-gap: 28px;
+  }
+
+  .hero {
+    min-height: clamp(480px, 58vh, 620px);
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .site--home .hero {
+    min-height: calc(100dvh + var(--appbar-height));
+  }
+
+  .site--home .hero__layout {
+    min-height: calc(100dvh - var(--hero-appbar-gap));
+    padding-bottom: 48px;
+  }
+
+  .hero::before {
+    background:
+      radial-gradient(ellipse 46% 52% at 6% 46%, var(--hero-blob-light) 0%, transparent 72%),
+      radial-gradient(ellipse 54% 46% at 96% 58%, var(--hero-blob-gray) 0%, transparent 68%),
+      radial-gradient(ellipse 28% 24% at 78% 8%, var(--hero-blob-soft) 0%, transparent 64%);
+  }
+
+  .hero__layout {
+    display: grid;
+    flex-direction: unset;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 58%);
+    grid-template-rows: auto;
+    gap: 0 24px;
+    padding: 36px 24px 0;
+    align-items: stretch;
+    overflow-x: clip;
+  }
+
+  .hero__bottom {
+    display: contents;
+  }
+
+  .hero__inner,
+  .hero__content,
+  .hero h1 {
+    display: revert;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    padding-bottom: 32px;
+    justify-content: center;
+    min-height: clamp(400px, 52vh, 540px);
+  }
+
+  .hero__content {
+    display: block;
+    max-width: 36em;
+  }
+
+  .hero__cta-row {
+    display: contents;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+
+  .hero p.lead {
+    max-width: none;
+  }
+
+  .hero-actions {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .hero__pet {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    flex: unset;
+    order: unset;
+    height: auto;
+    max-width: none;
+    width: 100%;
+    margin-left: 0;
+    align-items: flex-end;
+    align-self: stretch;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    justify-content: flex-end;
+    justify-self: stretch;
+    min-height: clamp(460px, 56vh, 620px);
+    overflow: visible;
+  }
+
+  .hero__pet picture {
+    display: block;
+    align-items: revert;
+    justify-content: revert;
+    width: auto;
+    height: auto;
+  }
+
+  .hero__pet-img {
+    width: 142%;
+    height: auto;
+    max-width: none;
+    max-height: min(94vh, 720px);
+    margin-right: -10%;
+    object-position: bottom right;
+  }
+
+  .hero-actions__phone-text {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    border: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 4vw, 48px);
+    margin-bottom: 14px;
+    line-height: 1.02;
+  }
+
+  .hero p.lead {
+    grid-column: unset;
+    grid-row: unset;
+    font-size: 16px;
+    margin-bottom: 22px;
+  }
+
+  .hero-actions .btn-primary {
+    flex: 0 1 auto;
+  }
+
+}
+
+.hero__decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero__decor-defs {
+  position: absolute;
+  overflow: hidden;
+}
+
+.hero__decor-item {
+  position: absolute;
+  opacity: 0;
+  height: auto;
+  animation-duration: var(--fall-duration, 11s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: var(--fall-delay, 0s);
+  --fall-rotate-delta: 24deg;
+}
+
+/* Animation Variant 1 — vertical aerial drift (hab.vet style) */
+.hero__decor:not([data-hero-decor="v2"]) {
+  --hero-decor-opacity: 0.58;
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item {
+  opacity: var(--hero-decor-opacity);
+  top: var(--decor-y, 30%);
+  left: var(--decor-x, 10%);
+  right: auto;
+  transform-origin: center;
+  rotate: var(--fall-tilt, 0deg);
+  animation-duration: calc(var(--fall-duration, 35s) / 30);
+  animation-delay: calc(var(--fall-delay, 0s) / 30);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+  --drift-range: clamp(18px, 2.4vh, 26px);
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--dir-down {
+  animation-name: heroDecorFloatDown;
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--dir-up {
+  animation-name: heroDecorFloatUp;
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone {
+  width: clamp(58px, 6vw, 88px);
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw {
+  width: clamp(40px, 4.2vw, 58px);
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish {
+  width: clamp(54px, 5.6vw, 82px);
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone.hero__decor-item--size-sm {
+  width: clamp(42px, 4.4vw, 62px);
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish.hero__decor-item--size-sm {
+  width: clamp(38px, 4vw, 56px);
+}
+
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-a { --decor-x: 46%; --decor-y: 6%; --fall-duration: 34s; --fall-delay: 0s; --fall-tilt: -8deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-b { --decor-x: 4%; --decor-y: 10%; --fall-duration: 38s; --fall-delay: -3s; --fall-tilt: -5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-c { --decor-x: 30%; --decor-y: 12%; --fall-duration: 36s; --fall-delay: -8s; --fall-tilt: -7deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-d { --decor-x: 50%; --decor-y: 16%; --fall-duration: 40s; --fall-delay: -14s; --fall-tilt: -4deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-e { --decor-x: 76%; --decor-y: 22%; --fall-duration: 42s; --fall-delay: -20s; --fall-tilt: -9deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-f { --decor-x: 18%; --decor-y: 32%; --fall-duration: 37s; --fall-delay: -26s; --fall-tilt: -6deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-g { --decor-x: 52%; --decor-y: 40%; --fall-duration: 44s; --fall-delay: -11s; --fall-tilt: -10deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-h { --decor-x: 6%; --decor-y: 48%; --fall-duration: 39s; --fall-delay: -17s; --fall-tilt: -5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-i { --decor-x: 66%; --decor-y: 56%; --fall-duration: 35s; --fall-delay: -23s; --fall-tilt: -4deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-j { --decor-x: 20%; --decor-y: 66%; --fall-duration: 41s; --fall-delay: -29s; --fall-tilt: -8deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-k { --decor-x: 14%; --decor-y: 76%; --fall-duration: 43s; --fall-delay: -5s; --fall-tilt: -7deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-l { --decor-x: 36%; --decor-y: 86%; --fall-duration: 38s; --fall-delay: -32s; --fall-tilt: -5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-a { --decor-x: 64%; --decor-y: 10%; --fall-duration: 38s; --fall-delay: -4s; --fall-tilt: -6deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-b { --decor-x: 26%; --decor-y: 18%; --fall-duration: 35s; --fall-delay: -10s; --fall-tilt: -4deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-c { --decor-x: 94%; --decor-y: 28%; --fall-duration: 43s; --fall-delay: -16s; --fall-tilt: -7deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-d { --decor-x: 10%; --decor-y: 38%; --fall-duration: 37s; --fall-delay: -22s; --fall-tilt: -5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-e { --decor-x: 40%; --decor-y: 46%; --fall-duration: 41s; --fall-delay: -28s; --fall-tilt: -8deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-f { --decor-x: 22%; --decor-y: 56%; --fall-duration: 39s; --fall-delay: -34s; --fall-tilt: -6deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-g { --decor-x: 86%; --decor-y: 64%; --fall-duration: 45s; --fall-delay: -7s; --fall-tilt: -5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-h { --decor-x: 80%; --decor-y: 70%; --fall-duration: 36s; --fall-delay: -13s; --fall-tilt: -4deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-i { --decor-x: 34%; --decor-y: 84%; --fall-duration: 42s; --fall-delay: -19s; --fall-tilt: -7deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-j { --decor-x: 8%; --decor-y: 90%; --fall-duration: 40s; --fall-delay: -25s; --fall-tilt: -6deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-a { --decor-x: 74%; --decor-y: 8%; --fall-duration: 40s; --fall-delay: -2s; --fall-tilt: 5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-b { --decor-x: 88%; --decor-y: 14%; --fall-duration: 36s; --fall-delay: -9s; --fall-tilt: 7deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-c { --decor-x: 16%; --decor-y: 24%; --fall-duration: 45s; --fall-delay: -15s; --fall-tilt: 4deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-d { --decor-x: 56%; --decor-y: 36%; --fall-duration: 38s; --fall-delay: -21s; --fall-tilt: 6deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-e { --decor-x: 92%; --decor-y: 42%; --fall-duration: 42s; --fall-delay: -27s; --fall-tilt: 5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-f { --decor-x: 96%; --decor-y: 50%; --fall-duration: 37s; --fall-delay: -33s; --fall-tilt: 8deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-g { --decor-x: 70%; --decor-y: 58%; --fall-duration: 41s; --fall-delay: -6s; --fall-tilt: 4deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-h { --decor-x: 44%; --decor-y: 70%; --fall-duration: 39s; --fall-delay: -12s; --fall-tilt: 6deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-i { --decor-x: 62%; --decor-y: 78%; --fall-duration: 44s; --fall-delay: -18s; --fall-tilt: 5deg; }
+.hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-j { --decor-x: 84%; --decor-y: 86%; --fall-duration: 36s; --fall-delay: -24s; --fall-tilt: 7deg; }
+
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--dir-down {
+  top: -14%;
+  left: var(--decor-anchor, 10%);
+  will-change: transform, opacity, top;
+  animation-name: heroDecorDown;
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--dir-up {
+  top: 108%;
+  left: var(--decor-anchor, 10%);
+  will-change: transform, opacity, top;
+  animation-name: heroDecorUp;
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--dir-right {
+  top: var(--decor-anchor, 35%);
+  left: -14%;
+  will-change: transform, opacity, left;
+  animation-name: heroDecorRight;
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--dir-left {
+  top: var(--decor-anchor, 55%);
+  left: 108%;
+  will-change: transform, opacity, left;
+  animation-name: heroDecorLeft;
+}
+
+.hero__decor-item--bone {
+  color: var(--hero-decor-lime);
+  width: clamp(72px, 7.5vw, 108px);
+}
+
+.hero__decor-item--paw {
+  color: var(--hero-decor-paw);
+  width: clamp(48px, 5.2vw, 72px);
+}
+
+.hero__decor-item--fish {
+  color: var(--hero-decor-orange);
+  width: clamp(68px, 7vw, 100px);
+}
+
+/* Animation Variant 2 */
+.hero__decor[data-hero-decor="v2"] {
+  --decor-speed-mult: 1;
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item {
+  --decor-parallax-y: 0px;
+  animation-duration: calc(var(--fall-duration, 24s) / var(--decor-speed-mult, 1));
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-a {
+  --decor-anchor: 5%;
+  --fall-duration: 24s;
+  --fall-delay: 0s;
+  --fall-tilt: -16deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-c {
+  --decor-anchor: 22%;
+  --fall-duration: 26s;
+  --fall-delay: -14s;
+  --fall-tilt: -8deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-e {
+  --decor-anchor: 52%;
+  --fall-duration: 27s;
+  --fall-delay: -22s;
+  --fall-tilt: -12deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-g {
+  --decor-anchor: 68%;
+  --fall-duration: 23s;
+  --fall-delay: -8s;
+  --fall-tilt: -18deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--paw-a {
+  --decor-anchor: 12%;
+  --fall-duration: 25s;
+  --fall-delay: -6s;
+  --fall-tilt: 8deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--paw-c {
+  --decor-anchor: 38%;
+  --fall-duration: 28s;
+  --fall-delay: -18s;
+  --fall-tilt: 16deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--paw-e {
+  --decor-anchor: 60%;
+  --fall-duration: 26.5s;
+  --fall-delay: -26s;
+  --fall-tilt: 6deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--paw-g {
+  --decor-anchor: 78%;
+  --fall-duration: 24.5s;
+  --fall-delay: -10s;
+  --fall-tilt: 18deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--fish-a {
+  --decor-anchor: 18%;
+  --fall-duration: 25.5s;
+  --fall-delay: -9s;
+  --fall-tilt: -10deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--fish-c {
+  --decor-anchor: 32%;
+  --fall-duration: 23.5s;
+  --fall-delay: -3s;
+  --fall-tilt: -14deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--fish-e {
+  --decor-anchor: 48%;
+  --fall-duration: 27.5s;
+  --fall-delay: -20s;
+  --fall-tilt: -16deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--fish-g {
+  --decor-anchor: 72%;
+  --fall-duration: 26.2s;
+  --fall-delay: -15s;
+  --fall-tilt: -8deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-b {
+  --decor-anchor: 18%;
+  --fall-duration: 25s;
+  --fall-delay: -5s;
+  --fall-tilt: -10deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-d {
+  --decor-anchor: 56%;
+  --fall-duration: 27s;
+  --fall-delay: -16s;
+  --fall-tilt: -8deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-f {
+  --decor-anchor: 92%;
+  --fall-duration: 26s;
+  --fall-delay: -28s;
+  --fall-tilt: -12deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--bone-h {
+  --decor-anchor: 62%;
+  --fall-duration: 24s;
+  --fall-delay: -7s;
+  --fall-tilt: -14deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--paw-b {
+  --decor-anchor: 34%;
+  --fall-duration: 28s;
+  --fall-delay: -32s;
+  --fall-tilt: 10deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--paw-d {
+  --decor-anchor: 88%;
+  --fall-duration: 25.5s;
+  --fall-delay: -22s;
+  --fall-tilt: 12deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--fish-b {
+  --decor-anchor: 70%;
+  --fall-duration: 26.8s;
+  --fall-delay: -2s;
+  --fall-tilt: -12deg;
+ 
+}
+
+.hero__decor[data-hero-decor="v2"] .hero__decor-item--fish-d {
+  --decor-anchor: 22%;
+  --fall-duration: 24.8s;
+  --fall-delay: -34s;
+  --fall-tilt: -10deg;
+ 
+}
+
+@keyframes heroDecorFloatDown {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, var(--drift-range, 22px), 0);
+  }
+}
+
+@keyframes heroDecorFloatUp {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, calc(var(--drift-range, 22px) * -1), 0);
+  }
+}
+
+@keyframes heroDecorDown {
+  0% {
+    top: -14%;
+    transform: translate3d(0, var(--decor-parallax-y, 0px), 0) rotate(var(--fall-tilt, 0deg));
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  84% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  100% {
+    top: 108%;
+    transform: translate3d(var(--fall-drift, 0px), var(--decor-parallax-y, 0px), 0) rotate(calc(var(--fall-tilt, 0deg) + var(--fall-rotate-delta, 24deg)));
+    opacity: 0;
+  }
+}
+
+@keyframes heroDecorUp {
+  0% {
+    top: 108%;
+    transform: translate3d(0, var(--decor-parallax-y, 0px), 0) rotate(var(--fall-tilt, 0deg));
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  84% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  100% {
+    top: -14%;
+    transform: translate3d(var(--fall-drift, 0px), var(--decor-parallax-y, 0px), 0) rotate(calc(var(--fall-tilt, 0deg) - var(--fall-rotate-delta, 24deg)));
+    opacity: 0;
+  }
+}
+
+@keyframes heroDecorRight {
+  0% {
+    left: -14%;
+    transform: translate3d(0, var(--decor-parallax-y, 0px), 0) rotate(var(--fall-tilt, 0deg));
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  84% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  100% {
+    left: 108%;
+    transform: translate3d(0, calc(var(--fall-drift, 0px) + var(--decor-parallax-y, 0px)), 0) rotate(calc(var(--fall-tilt, 0deg) + var(--fall-rotate-delta, 24deg)));
+    opacity: 0;
+  }
+}
+
+@keyframes heroDecorLeft {
+  0% {
+    left: 108%;
+    transform: translate3d(0, var(--decor-parallax-y, 0px), 0) rotate(var(--fall-tilt, 0deg));
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  84% {
+    opacity: var(--hero-decor-opacity);
+  }
+
+  100% {
+    left: -14%;
+    transform: translate3d(0, calc(var(--fall-drift, 0px) + var(--decor-parallax-y, 0px)), 0) rotate(calc(var(--fall-tilt, 0deg) - var(--fall-rotate-delta, 24deg)));
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__decor[data-hero-decor="v2"] .hero__decor-item {
+    opacity: 0;
+  }
+
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item {
+    display: none;
+  }
+
+  .hero__decor:not([data-hero-decor="v2"]) :is(
+    .hero__decor-item--bone-a,
+    .hero__decor-item--bone-e,
+    .hero__decor-item--bone-g,
+    .hero__decor-item--paw-a,
+    .hero__decor-item--paw-b,
+    .hero__decor-item--paw-f,
+    .hero__decor-item--fish-a,
+    .hero__decor-item--fish-c,
+    .hero__decor-item--fish-e,
+    .hero__decor-item--fish-h
+  ) {
+    display: block;
+  }
+
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-a { --decor-x: 8%; --decor-y: 16%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-e { --decor-x: 88%; --decor-y: 38%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone-g { --decor-x: 84%; --decor-y: 58%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-a { --decor-x: 78%; --decor-y: 18%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-b { --decor-x: 10%; --decor-y: 42%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw-f { --decor-x: 18%; --decor-y: 72%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-a { --decor-x: 48%; --decor-y: 10%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-c { --decor-x: 22%; --decor-y: 22%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-e { --decor-x: 6%; --decor-y: 58%; }
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish-h { --decor-x: 72%; --decor-y: 72%; }
+
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--bone {
+    width: clamp(44px, 11vw, 58px);
+  }
+
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--paw {
+    width: clamp(32px, 8vw, 44px);
+  }
+
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item--fish {
+    width: clamp(40px, 10vw, 54px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__decor-item {
+    animation: none;
+    will-change: auto;
+  }
+
+  .hero__decor:not([data-hero-decor="v2"]) .hero__decor-item {
+    opacity: var(--hero-decor-opacity, 0.58);
+    transform: none;
+  }
+
+  .hero__decor[data-hero-decor="v2"] .hero__decor-item {
+    opacity: 0;
+  }
+}

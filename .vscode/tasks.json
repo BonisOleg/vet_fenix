@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Django: dev server",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/dev-server.sh",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "DEV_WATCH": "0"
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "django",
+        "pattern": {
+          "regexp": "^Starting development server at (https?://\\S+)",
+          "line": 1,
+          "message": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Performing system checks",
+          "endsPattern": "Starting development server at"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    }
+  ]
+}
