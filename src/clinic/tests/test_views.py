@@ -13,7 +13,7 @@ class HomeViewTests(TestCase):
         self.assertContains(response, 'Послуги')
         self.assertContains(response, 'Лікарі')
         self.assertNotContains(response, '>Переваги</a>')
-        self.assertContains(response, 'Чому обирають «Фенікс»')
+        self.assertContains(response, 'Чому обирають Фенікс')
         self.assertContains(response, 'Записатись')
         self.assertContains(response, 'trust-strip')
         self.assertContains(response, 'Ветеринарна клініка «Фенікс»')

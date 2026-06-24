@@ -3,8 +3,8 @@
     "model": "core.sitesettings",
     "pk": 1,
     "fields": {
-      "clinic_name_line1": "Ветеринарна клініка",
-      "clinic_name_line2": "«Фенікс»",
+      "clinic_name_line1": "ветеринарна клініка",
+      "clinic_name_line2": "Фенікс",
       "tagline": "",
       "address": "м. Київ, вул. Ірпінська, 67б",
       "phone_primary": "+380933839933",

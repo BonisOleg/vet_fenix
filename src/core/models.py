@@ -12,8 +12,8 @@ HERO_LEAD_DEFAULT = (
 
 
 class SiteSettings(models.Model):
-    clinic_name_line1 = models.CharField('Назва (рядок 1)', max_length=64, default='Ветеринарна клініка')
-    clinic_name_line2 = models.CharField('Назва (рядок 2)', max_length=64, default='«Фенікс»')
+    clinic_name_line1 = models.CharField('Назва (рядок 1)', max_length=64, default='ветеринарна клініка')
+    clinic_name_line2 = models.CharField('Назва (рядок 2)', max_length=64, default='Фенікс')
     tagline = models.CharField('Слоган', max_length=200, blank=True)
     address = models.CharField('Адреса', max_length=255, default='м. Київ, вул. Ірпінська, 67б')
     phone_primary = models.CharField('Телефон', max_length=32, default='+380933839933')
