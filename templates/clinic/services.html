@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static vet_icons %}
+{% load static vet_icons vet_content %}
 
 {% block title %}Послуги · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
 
@@ -8,10 +8,12 @@
 {% endblock %}
 
 {% block content %}
+{% section_visible 'services' 'header_section_visible' as show_page %}
+{% if show_page %}
 <section class="section page-section page-section--services">
-  <span class="lime-tag" data-reveal>Послуги</span>
-  <h1 class="page-heading" data-reveal>Все, що потрібно вашому улюбленцю</h1>
-  <p class="page-lead-inline" data-reveal>Повний перелік послуг клініки з детальним описом.</p>
+  <span class="lime-tag" data-reveal>{% block_plain 'services' 'header_tag' %}</span>
+  <h1 class="page-heading" data-reveal>{% block_plain 'services' 'header_title' %}</h1>
+  <p class="page-lead-inline" data-reveal>{% block_plain 'services' 'header_lead' %}</p>
   <div class="svc-grid svc-grid--page">
     {% for service in services %}
     <article class="svc-card svc-card--page svc-card--flip{% if service.is_urgent %} is-urgent{% endif %}" data-reveal data-reveal-delay="{% widthratio forloop.counter 1 80 %}">
@@ -50,6 +52,7 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 {% endblock %}
 
 {% block page_js %}

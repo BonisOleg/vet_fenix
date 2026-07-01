@@ -1,6 +1,6 @@
 {% load vet_icons %}
 <header class="appbar">
-  <div class="appbar-inner">
+  <div class="appbar-inner{% if site_nav_primary|length < 4 %} appbar-inner--nav-compact{% endif %}">
     <a href="{% url 'clinic:home' %}" class="logo">
       <div class="logo-mark" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -15,12 +15,13 @@
         <span class="brand-l2">{{ site.clinic_name_line2 }}</span>
       </div>
     </a>
-    <nav class="site-nav-desktop" aria-label="Головна навігація">
-      <a href="{% url 'clinic:home' %}" class="{% if active_nav == 'home' %}is-active{% endif %}">Головна</a>
-      <a href="{% url 'clinic:services' %}" class="{% if active_nav == 'services' %}is-active{% endif %}">Послуги</a>
-      <a href="{% url 'clinic:doctors' %}" class="{% if active_nav == 'doctors' %}is-active{% endif %}">Лікарі</a>
-      <a href="{% url 'clinic:contacts' %}" class="{% if active_nav == 'contacts' %}is-active{% endif %}">Контакти</a>
+    {% if site_nav_primary %}
+    <nav class="site-nav-desktop site-nav-desktop--count-{{ site_nav_primary|length }}" aria-label="Головна навігація">
+      {% for item in site_nav_primary %}
+      <a href="{% url item.url_name %}" class="{% if active_nav == item.nav_id %}is-active{% endif %}">{{ item.label }}</a>
+      {% endfor %}
     </nav>
+    {% endif %}
     <div class="appbar-actions">
       <a href="tel:{{ site.phone_primary }}" class="appbar-phone">
         {% icon 'phone' 16 %}

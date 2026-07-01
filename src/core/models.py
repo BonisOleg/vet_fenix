@@ -1,16 +1,6 @@
 from django.db import models
 
 
-HERO_LEAD_DEFAULT = (
-    'Ветеринарна клініка «Фенікс» надає широкий спектр послуг для Ваших домашніх улюбленців. '
-    'Наші фахівці працюють за актуальними протоколами, спираючись на доказову медицину. '
-    'Клініка забезпечена новітнім обладнанням, що допомагає у швидкій діагностиці пацієнтів. '
-    'З основних переваг — цілодобовий стаціонар інтенсивної терапії та реанімації. '
-    'Постійне навчання, поглиблення знань та навичок персоналу, використання сучасних методів '
-    'діагностики — шлях до успіху у лікуванні Ваших хвостиків.'
-)
-
-
 class SiteSettings(models.Model):
     clinic_name_line1 = models.CharField('Назва (рядок 1)', max_length=64, default='ветеринарна клініка')
     clinic_name_line2 = models.CharField('Назва (рядок 2)', max_length=64, default='Фенікс')
@@ -19,22 +9,6 @@ class SiteSettings(models.Model):
     phone_primary = models.CharField('Телефон', max_length=32, default='+380933839933')
     phone_secondary = models.CharField('Телефон 2', max_length=32, blank=True, default='+380983839033')
     email = models.EmailField('Email', blank=True, default='')
-    hero_title = models.CharField(
-        'Заголовок hero',
-        max_length=255,
-        default='Турбота про ваших улюбленців — цілодобово',
-    )
-    hero_lead = models.TextField(
-        'Підзаголовок hero',
-        max_length=600,
-        default=HERO_LEAD_DEFAULT,
-    )
-    hero_stat_number = models.CharField('Hero картка (число)', max_length=16, default='24/7')
-    hero_stat_label = models.CharField(
-        'Hero картка (підпис)',
-        max_length=120,
-        default='стаціонар інтенсивної терапії',
-    )
     is_open_now = models.BooleanField('Працюємо зараз', default=True)
     trust_label = models.CharField('Trust strip', max_length=64, default='Працюємо зараз')
     hours_label = models.CharField('Години роботи', max_length=64, default='Цілодобово')
@@ -57,3 +31,129 @@ class SiteSettings(models.Model):
     def load(cls) -> 'SiteSettings':
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj
+
+
+class SiteBlock(models.Model):
+    class ContentType(models.TextChoices):
+        TEXT = 'text', 'Текст'
+        IMAGE = 'image', 'Фото'
+
+    class Page(models.TextChoices):
+        HOME = 'home', 'Головна'
+        SERVICES = 'services', 'Послуги'
+        DOCTORS = 'doctors', 'Лікарі'
+        CONTACTS = 'contacts', 'Контакти'
+        SITE = 'site', 'Сайт'
+
+    page = models.CharField(max_length=32, choices=Page.choices, verbose_name='Сторінка')
+    key = models.CharField(max_length=64, verbose_name='Ключ блоку')
+    label = models.CharField(max_length=128, verbose_name='Назва в адмінці')
+    content_type = models.CharField(
+        max_length=16,
+        choices=ContentType.choices,
+        default=ContentType.TEXT,
+        verbose_name='Тип контенту',
+    )
+    text_html = models.TextField(blank=True, verbose_name='Текст')
+    image = models.ImageField(upload_to='blocks/', blank=True, verbose_name='Зображення')
+    sort_order = models.PositiveSmallIntegerField(default=0, verbose_name='Порядок')
+    is_active = models.BooleanField(default=True, verbose_name='Активний')
+
+    class Meta:
+        ordering = ['page', 'sort_order', 'key']
+        verbose_name = 'Блок контенту'
+        verbose_name_plural = 'Блоки контенту'
+        constraints = [
+            models.UniqueConstraint(fields=['page', 'key'], name='unique_site_block_page_key'),
+        ]
+
+    def __str__(self) -> str:
+        return f'{self.get_page_display()} · {self.label}'
+
+    @property
+    def cache_key(self) -> str:
+        return f'{self.page}.{self.key}'
+
+
+class HomeHeroSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Головна — Hero'
+        verbose_name_plural = 'Головна — Hero'
+
+
+class HomeAdvantagesSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Головна — Переваги'
+        verbose_name_plural = 'Головна — Переваги'
+
+
+class HomeServicesPreviewSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Головна — Послуги'
+        verbose_name_plural = 'Головна — Послуги'
+
+
+class HomeDoctorsPreviewSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Головна — Лікарі'
+        verbose_name_plural = 'Головна — Лікарі'
+
+
+class ServicesPageHeaderSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Послуги — Шапка'
+        verbose_name_plural = 'Послуги — Шапка'
+
+
+class DoctorsPageHeaderSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Лікарі — Шапка'
+        verbose_name_plural = 'Лікарі — Шапка'
+
+
+class ContactsPageHeaderSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Контакти — Шапка'
+        verbose_name_plural = 'Контакти — Шапка'
+
+
+class ContactsClinicInfoSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Контакти — Клініка'
+        verbose_name_plural = 'Контакти — Клініка'
+
+
+class ContactsFormSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Контакти — Форма'
+        verbose_name_plural = 'Контакти — Форма'
+
+
+class ContactsMapSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Контакти — Карта'
+        verbose_name_plural = 'Контакти — Карта'
+
+
+class TrustStripSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Trust strip'
+        verbose_name_plural = 'Trust strip'
+
+
+class FooterSocialSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Footer — Соцмережі'
+        verbose_name_plural = 'Footer — Соцмережі'

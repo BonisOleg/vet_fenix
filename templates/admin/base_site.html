@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+    {% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin/admin_readable_forms.css' %}">
+{% endblock %}

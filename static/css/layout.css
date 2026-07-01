@@ -51,6 +51,10 @@
     margin-inline: auto;
   }
 
+  .site--sections-compact .site-main > .section {
+    max-width: min(var(--page-max), 920px);
+  }
+
   .site-main {
     padding-bottom: var(--safe-bottom);
   }

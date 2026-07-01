@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static vet_content %}
 
 {% block title %}Лікарі · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
 
@@ -9,10 +9,12 @@
 {% endblock %}
 
 {% block content %}
+{% section_visible 'doctors' 'header_section_visible' as show_page %}
+{% if show_page %}
 <section class="section page-section page-section--doctors">
-  <span class="lime-tag" data-reveal>Команда</span>
-  <h1 class="page-heading" data-reveal>Лікарі, яким довіряють</h1>
-  <p class="page-lead-inline" data-reveal>{{ doctors_section_note }}</p>
+  <span class="lime-tag" data-reveal>{% block_plain 'doctors' 'header_tag' %}</span>
+  <h1 class="page-heading" data-reveal>{% block_plain 'doctors' 'header_title' %}</h1>
+  <p class="page-lead-inline" data-reveal>{% block_plain 'doctors' 'header_lead' %}</p>
   <div class="docs-grid docs-grid--page">
     {% for doctor in doctors %}
     {% widthratio forloop.counter 1 100 as reveal_delay %}
@@ -20,6 +22,7 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 {% endblock %}
 
 {% block page_js %}

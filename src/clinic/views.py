@@ -7,11 +7,6 @@ from clinic.forms import ContactForm
 from clinic.models import Advantage, Doctor, Service
 from core.models import SiteSettings
 
-DOCTORS_SECTION_NOTE = (
-    'Наші лікарі працюють за актуальними міжнародними протоколами, '
-    'а сучасне діагностичне обладнання дозволяє виявляти захворювання на ранніх стадіях.'
-)
-
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(
@@ -20,8 +15,7 @@ def home(request: HttpRequest) -> HttpResponse:
         {
             'services': Service.objects.filter(is_active=True),
             'doctors': Doctor.objects.filter(is_active=True),
-            'doctors_section_note': DOCTORS_SECTION_NOTE,
-            'advantages': Advantage.objects.all(),
+            'advantages': Advantage.objects.filter(is_active=True),
             'active_nav': 'home',
         },
     )
@@ -44,7 +38,6 @@ def doctors_page(request: HttpRequest) -> HttpResponse:
         'clinic/doctors.html',
         {
             'doctors': Doctor.objects.filter(is_active=True),
-            'doctors_section_note': DOCTORS_SECTION_NOTE,
             'active_nav': 'doctors',
         },
     )

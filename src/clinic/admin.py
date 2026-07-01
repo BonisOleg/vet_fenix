@@ -1,18 +1,51 @@
 from django.contrib import admin
+from django.utils.html import format_html
+from tinymce.widgets import TinyMCE
+from unfold.admin import ModelAdmin
 
+from core.admin_mixins import ReadableUnfoldFieldsMixin
 from clinic.models import Advantage, ContactMessage, Doctor, Service
 
 
 @admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'is_urgent', 'order', 'is_active')
+class ServiceAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
+    list_display = ('name', 'slug', 'price_hint', 'is_urgent', 'order', 'is_active')
     list_editable = ('order', 'is_active')
+    list_filter = ('is_urgent', 'is_active', 'icon')
+    search_fields = ('name', 'slug', 'short_description')
     prepopulated_fields = {'slug': ('name',)}
+    ordering = ('order', 'name')
+
+    fieldsets = (
+        (
+            None,
+            {
+                'fields': (
+                    'name',
+                    'slug',
+                    'icon',
+                    'short_description',
+                    'full_description',
+                    'price_hint',
+                    'bullets',
+                    'is_urgent',
+                    'order',
+                    'is_active',
+                ),
+            },
+        ),
+    )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == 'full_description':
+            kwargs['widget'] = TinyMCE()
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
 @admin.register(Doctor)
-class DoctorAdmin(admin.ModelAdmin):
+class DoctorAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
     list_display = (
+        'get_photo_preview',
         'name',
         'specialization',
         'experience_years',
@@ -22,30 +55,66 @@ class DoctorAdmin(admin.ModelAdmin):
         'is_active',
     )
     list_editable = ('order', 'is_active')
+    list_filter = ('is_active',)
+    search_fields = ('name', 'specialization', 'bio')
     prepopulated_fields = {'slug': ('name',)}
-    fields = (
-        'slug',
-        'name',
-        'specialization',
-        'bio',
-        'experience_years',
-        'initials',
-        'photo',
-        'rating',
-        'patients_label',
-        'order',
-        'is_active',
+    readonly_fields = ('get_photo_preview',)
+    ordering = ('order', 'name')
+
+    fieldsets = (
+        (
+            None,
+            {
+                'fields': (
+                    'slug',
+                    'name',
+                    'specialization',
+                    'bio',
+                    'experience_years',
+                    'initials',
+                    'photo',
+                    'get_photo_preview',
+                    'rating',
+                    'patients_label',
+                    'order',
+                    'is_active',
+                ),
+            },
+        ),
     )
+
+    @admin.display(description='Фото')
+    def get_photo_preview(self, obj: Doctor) -> str:
+        if obj.photo:
+            return format_html(
+                '<img src="{}" alt="{}" style="max-height:120px;border-radius:8px;" />',
+                obj.photo.url,
+                obj.name,
+            )
+        return '—'
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == 'bio':
+            kwargs['widget'] = TinyMCE()
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
 @admin.register(Advantage)
-class AdvantageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'order', 'is_alt')
-    list_editable = ('order', 'is_alt')
+class AdvantageAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
+    list_display = ('title', 'icon', 'order', 'is_alt', 'is_active')
+    list_editable = ('order', 'is_alt', 'is_active')
+    list_filter = ('icon', 'is_alt')
+    search_fields = ('title', 'description')
+    ordering = ('order',)
 
 
 @admin.register(ContactMessage)
-class ContactMessageAdmin(admin.ModelAdmin):
+class ContactMessageAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
     list_display = ('name', 'phone', 'created_at')
+    list_filter = ('created_at',)
     search_fields = ('name', 'phone', 'message')
-    readonly_fields = ('created_at',)
+    readonly_fields = ('name', 'phone', 'message', 'created_at')
+    date_hierarchy = 'created_at'
+
+    def has_add_permission(self, request) -> bool:
+        return False

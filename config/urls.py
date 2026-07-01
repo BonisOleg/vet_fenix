@@ -12,6 +12,7 @@ def healthz(_request):
 urlpatterns = [
     path('healthz/', healthz, name='healthz'),
     path('admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
     path('', include('clinic.urls')),
     path('zapis/', include('bookings.urls')),
 ]

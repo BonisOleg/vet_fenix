@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static vet_icons %}
+{% load static vet_icons vet_content %}
 
 {% block title %}Контакти · {{ site.clinic_name_line1 }} {{ site.clinic_name_line2 }}{% endblock %}
 
@@ -9,9 +9,12 @@
 
 {% block content %}
 <section class="section page-section page-section--contacts">
-  <span class="lime-tag" data-reveal>Контакти</span>
-  <h1 class="page-heading" data-reveal>Звʼяжіться з нами</h1>
-  <p class="page-lead-inline" data-reveal>Адреса, телефони та форма звернення.</p>
+  {% section_visible 'contacts' 'header_section_visible' as show_header %}
+  {% if show_header %}
+  <span class="lime-tag" data-reveal>{% block_plain 'contacts' 'header_tag' %}</span>
+  <h1 class="page-heading" data-reveal>{% block_plain 'contacts' 'header_title' %}</h1>
+  <p class="page-lead-inline" data-reveal>{% block_plain 'contacts' 'header_lead' %}</p>
+  {% endif %}
 
   {% if messages %}
   <div class="form-flash" role="status" data-reveal>
@@ -21,14 +24,20 @@
   </div>
   {% endif %}
 
-  <div class="contacts-layout" data-reveal>
+  {% section_visible 'contacts' 'clinic_section_visible' as show_clinic %}
+  {% section_visible 'contacts' 'form_section_visible' as show_form %}
+
+  <div class="contacts-layout{% if show_clinic and show_form %} contacts-layout--split{% elif show_clinic or show_form %} contacts-layout--single{% endif %}" data-reveal>
+    {% if show_clinic %}
     <div class="contact-block contact-block--page">
-      <h2 class="contact-block__title">Клініка</h2>
+      <h2 class="contact-block__title">{% block_plain 'contacts' 'clinic_block_title' %}</h2>
       {% include 'clinic/partials/contact_info.html' %}
     </div>
+    {% endif %}
 
+    {% if show_form %}
     <div class="contact-form-wrap contact-block--page">
-      <h2 class="contact-block__title">Написати нам</h2>
+      <h2 class="contact-block__title">{% block_plain 'contacts' 'form_block_title' %}</h2>
       <form class="contact-form" method="post" action="{% url 'clinic:contacts' %}">
         {% csrf_token %}
         <div class="field">
@@ -49,8 +58,11 @@
         <button type="submit" class="btn btn-accent contact-form__submit">Надіслати</button>
       </form>
     </div>
+    {% endif %}
   </div>
 
+  {% section_visible 'contacts' 'map_section_visible' as show_map %}
+  {% if show_map %}
   <div class="map-embed" data-reveal>
     <iframe
       title="Карта — {{ site.address }}"
@@ -60,6 +72,7 @@
       allowfullscreen
     ></iframe>
   </div>
+  {% endif %}
 </section>
 {% endblock %}
 

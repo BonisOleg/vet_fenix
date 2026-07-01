@@ -390,20 +390,21 @@ body.menu-open {
   box-sizing: border-box;
   width: auto;
   max-width: 100%;
-  padding: 8px 2px calc(8px + var(--safe-bottom));
+  padding: 8px 12px calc(8px + var(--safe-bottom));
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--border);
   display: flex;
   align-items: flex-end;
-  gap: 0;
+  justify-content: center;
+  gap: clamp(4px, 2vw, 14px);
   overflow: hidden;
 }
 
 .bottom-nav .tab {
   display: flex;
-  flex: 1 1 0;
+  flex: 0 1 clamp(52px, 18vw, 76px);
   flex-direction: column;
   align-items: center;
   gap: 2px;
@@ -491,9 +492,11 @@ body.menu-open {
 
   .site-nav-desktop {
     display: flex;
-    gap: 4px;
+    gap: clamp(4px, 1vw, 12px);
     align-items: center;
+    justify-content: center;
     justify-self: center;
+    flex-wrap: wrap;
   }
 
   .site-nav-desktop a {
@@ -512,6 +515,14 @@ body.menu-open {
     background: transparent;
     color: var(--graphite);
     box-shadow: inset 0 -2px 0 var(--lime);
+  }
+
+  .appbar-inner--nav-compact {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .appbar-inner--nav-compact .site-nav-desktop {
+    justify-self: center;
   }
 }
 

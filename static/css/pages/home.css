@@ -2,6 +2,11 @@
   padding-top: 32px;
 }
 
+.site--home.site--no-hero #perevahy,
+.site--home.site--no-hero .site-main > .section:first-of-type {
+  padding-top: calc(var(--hero-appbar-gap) + 12px);
+}
+
 @media (max-width: 767px) {
   #perevahy {
     margin-top: 0;
@@ -46,6 +51,11 @@
 @media (min-width: 768px) {
   #perevahy {
     padding-top: 56px;
+  }
+
+  .site--home.site--no-hero #perevahy,
+  .site--home.site--no-hero .site-main > .section:first-of-type {
+    padding-top: calc(var(--hero-appbar-gap) + 24px);
   }
 
   .section--doctors {

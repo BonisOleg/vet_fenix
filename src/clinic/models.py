@@ -92,6 +92,7 @@ class Advantage(models.Model):
     description = models.CharField(max_length=160)
     order = models.PositiveSmallIntegerField(default=0)
     is_alt = models.BooleanField(default=False, help_text='Помаранчева іконка')
+    is_active = models.BooleanField('Показувати на сайті', default=True)
 
     class Meta:
         ordering = ['order']

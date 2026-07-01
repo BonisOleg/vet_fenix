@@ -1,4 +1,4 @@
-{% load vet_icons %}
+{% load vet_icons vet_content %}
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer__inner">
     <div class="site-footer__col site-footer__col--start">
@@ -13,11 +13,13 @@
     </div>
 
     <div class="site-footer__col site-footer__col--center">
+      {% section_visible 'site' 'footer_social_section_visible' as show_social %}
+      {% if show_social %}
       <div class="site-footer__social" aria-label="Дзвінок та соціальні мережі">
-        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+        <a href="{% block_plain 'site' 'footer_instagram_url' %}" class="site-footer__social-link" aria-label="Instagram">
           {% icon 'instagram' 20 %}
         </a>
-        <a href="#" class="site-footer__social-link" aria-label="Telegram">
+        <a href="{% block_plain 'site' 'footer_telegram_url' %}" class="site-footer__social-link" aria-label="Telegram">
           {% icon 'telegram' 20 %}
         </a>
         <a
@@ -28,6 +30,7 @@
           {% icon 'phone' 20 %}
         </a>
       </div>
+      {% endif %}
       <p class="site-footer__credit">
         Розроблено <a href="https://www.prometeylabs.com/" target="_blank" rel="noopener noreferrer">PrometeyLabs</a>
       </p>

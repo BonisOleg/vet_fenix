@@ -1,14 +1,40 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 
+from core.admin_utils import ReadableUnfoldFieldsMixin, SingletonModelAdminMixin
 from core.models import SiteSettings
 
 
 @admin.register(SiteSettings)
-class SiteSettingsAdmin(admin.ModelAdmin):
+class SiteSettingsAdmin(ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, ModelAdmin):
     list_display = ('clinic_name_line1', 'clinic_name_line2', 'phone_primary')
 
-    def has_add_permission(self, request):
-        return not SiteSettings.objects.exists()
+    fieldsets = (
+        (
+            'Бренд',
+            {
+                'fields': (
+                    'clinic_name_line1',
+                    'clinic_name_line2',
+                    'tagline',
+                    'trust_label',
+                    'hours_label',
+                    'is_open_now',
+                ),
+            },
+        ),
+        (
+            'Контакти',
+            {
+                'fields': (
+                    'address',
+                    'phone_primary',
+                    'phone_secondary',
+                    'email',
+                ),
+            },
+        ),
+    )
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+
+from core import admin_site_content_proxies  # noqa: E402, F401

@@ -1,4 +1,4 @@
-{% load static vet_icons vet_static %}
+{% load static vet_icons vet_static vet_content %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -24,9 +24,10 @@
   <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
   {% block page_css %}{% endblock %}
 </head>
-<body class="site {% block body_class %}{% endblock %}">
+<body class="site {% block body_class %}{% endblock %}{% if body_modifiers %} {{ body_modifiers }}{% endif %}">
   {% block header %}{% include 'partials/header.html' %}{% endblock %}
-  {% if site.is_open_now %}
+  {% section_visible 'site' 'trust_strip_section_visible' as show_trust_strip %}
+  {% if show_trust_strip and site.is_open_now %}
   <div class="trust-strip">
     <strong>{{ site.trust_label }}</strong>
     <span class="trust-strip__sep" aria-hidden="true"></span>

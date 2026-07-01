@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static vet_icons %}
+{% load static vet_icons vet_content %}
 
 {% block body_class %}site--home{% endblock %}
 
@@ -9,40 +9,43 @@
 {% endblock %}
 
 {% block content %}
+{% section_visible 'home' 'hero_section_visible' as show_hero %}
+{% if show_hero %}
 <section class="hero" id="home">
   {% include 'partials/hero_decor.html' %}
   <div class="hero__layout">
     <div class="hero__inner">
       <div class="hero__content" data-reveal>
-        <h1>{{ site.hero_title }}</h1>
-        <p class="lead">{{ site.hero_lead }}</p>
+        <h1>{% block_plain 'home' 'hero_title' %}</h1>
+        <p class="lead">{% block_plain 'home' 'hero_lead' %}</p>
       </div>
     </div>
     <div class="hero__bottom">
       <div class="hero__cta-row">
         <div class="hero-actions">
           <a href="{% url 'bookings:booking' %}" class="btn btn-primary btn-lg">
-            <span class="accent">Записатись</span><span class="hero-actions__suffix"> онлайн</span> {% icon 'arrow-right' 16 %}
+            <span class="accent">{% block_plain 'home' 'hero_cta_booking' %}</span><span class="hero-actions__suffix">{% block_plain 'home' 'hero_cta_suffix' %}</span> {% icon 'arrow-right' 16 %}
           </a>
           <a href="tel:{{ site.phone_primary }}" class="btn btn-ghost btn-lg hero-actions__phone" aria-label="Подзвонити">
             {% icon 'phone' 20 %}
-            <span class="hero-actions__phone-text">Подзвонити</span>
+            <span class="hero-actions__phone-text">{% block_plain 'home' 'hero_cta_phone' %}</span>
           </a>
         </div>
       </div>
       <figure class="hero__pet" data-reveal data-reveal-delay="80">
         <picture>
-          <source srcset="{% static 'img/hero/cat.webp' %}" type="image/webp">
-          <img class="hero__pet-img" src="{% static 'img/hero/cat.png' %}" alt="Шотландський кіт — улюбленець клініки"
-            width="768" height="512" loading="eager" decoding="async">
+          {% block_image 'home' 'hero_image' css_class='hero__pet-img' fallback_static='img/hero/cat.png' %}
         </picture>
       </figure>
     </div>
   </div>
 </section>
+{% endif %}
 
+{% section_visible 'home' 'advantages_section_visible' as show_advantages %}
+{% if show_advantages %}
 <section class="section" id="perevahy">
-  <h2 data-reveal="emphasis">Чому обирають Фенікс</h2>
+  <h2 data-reveal="emphasis">{% block_plain 'home' 'advantages_section_title' %}</h2>
   <div class="adv-list">
     {% for adv in advantages %}
     <article class="adv-card{% if adv.is_alt %} is-alt{% endif %}" data-reveal="emphasis"
@@ -54,12 +57,15 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
+{% section_visible 'home' 'services_preview_section_visible' as show_services %}
+{% if show_services %}
 <section class="section" id="poslugy">
-  <span class="lime-tag" data-reveal>Послуги</span>
-  <h2 data-reveal>Наші послуги</h2>
-  <p class="section-more"><a href="{% url 'clinic:services' %}">Детальніше →</a></p>
-  <p class="svc-expand-hint" data-reveal>Натисніть послугу, щоб переглянути деталі.</p>
+  <span class="lime-tag" data-reveal>{% block_plain 'home' 'services_preview_tag' %}</span>
+  <h2 data-reveal>{% block_plain 'home' 'services_preview_title' %}</h2>
+  <p class="section-more"><a href="{% url 'clinic:services' %}">{% block_plain 'home' 'services_preview_more_label' %}</a></p>
+  <p class="svc-expand-hint" data-reveal>{% block_plain 'home' 'services_preview_hint' %}</p>
   <div class="svc-list">
     {% for service in services %}
     <article class="svc-row" id="service-{{ service.slug }}" data-reveal
@@ -81,15 +87,18 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
+{% section_visible 'home' 'doctors_preview_section_visible' as show_doctors %}
+{% if show_doctors %}
 <section class="section section--doctors" id="likari">
   <header class="docs-header">
     <div class="docs-header__title">
-      <span class="lime-tag" data-reveal>Команда</span>
-      <h2 data-reveal>Лікарі, яким довіряють</h2>
-      <p class="section-more"><a href="{% url 'clinic:doctors' %}">Детальніше →</a></p>
+      <span class="lime-tag" data-reveal>{% block_plain 'home' 'doctors_preview_tag' %}</span>
+      <h2 data-reveal>{% block_plain 'home' 'doctors_preview_title' %}</h2>
+      <p class="section-more"><a href="{% url 'clinic:doctors' %}">{% block_plain 'home' 'services_preview_more_label' %}</a></p>
     </div>
-    <p class="docs-header__note">{{ doctors_section_note }}</p>
+    <p class="docs-header__note">{% block_plain 'home' 'doctors_preview_note' %}</p>
   </header>
   <div class="docs-grid">
     {% for doctor in doctors %}
@@ -98,6 +107,7 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 {% endblock %}
 
 {% block page_js %}

@@ -98,6 +98,12 @@
   margin-bottom: 24px;
 }
 
+.contacts-layout--single {
+  width: 100%;
+  max-width: min(560px, 100%);
+  margin-inline: auto;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -212,6 +218,15 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     align-items: stretch;
+  }
+
+  .contacts-layout--single {
+    grid-template-columns: minmax(0, 560px);
+    justify-content: center;
+  }
+
+  .contacts-layout--split {
+    grid-template-columns: 1fr 1fr;
   }
 
   .contacts-layout > .contact-block:not(.contact-form-wrap) {

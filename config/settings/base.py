@@ -1,6 +1,9 @@
 from pathlib import Path
 
 from decouple import config
+from django.urls import reverse_lazy
+
+from core.site_content_registry import build_content_sidebar_items
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -13,12 +16,16 @@ ALLOWED_HOSTS = config(
 )
 
 INSTALLED_APPS = [
+    'unfold',
+    'unfold.contrib.filters',
+    'unfold.contrib.forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
     'django_htmx',
     'csp',
     'core',
@@ -133,6 +140,7 @@ LOGGING = {
 }
 
 CONTENT_SECURITY_POLICY = {
+    'EXCLUDE_URL_PREFIXES': ('/admin/',),
     'DIRECTIVES': {
         'default-src': ("'self'",),
         'script-src': ("'self'",),
@@ -142,6 +150,88 @@ CONTENT_SECURITY_POLICY = {
         'connect-src': ("'self'",),
         'frame-src': ("'self'", 'https://www.google.com', 'https://maps.google.com'),
         'frame-ancestors': ("'none'",),
+        'base-uri': ("'self'",),
+        'form-action': ("'self'",),
+    },
+}
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 400,
+    'menubar': False,
+    'plugins': 'link lists image code',
+    'toolbar': 'undo redo | bold italic underline | bullist numlist | link image | code',
+    'content_css': False,
+    'skin': 'oxide',
+}
+
+UNFOLD = {
+    'SITE_TITLE': 'Фенікс',
+    'SITE_HEADER': 'Фенікс — Адмінпанель',
+    'SITE_SYMBOL': 'pets',
+    'SIDEBAR': {
+        'show_search': True,
+        'command_search': True,
+        'show_all_applications': False,
+        'navigation': [
+            {
+                'title': 'Налаштування',
+                'separator': False,
+                'items': [
+                    {
+                        'title': 'Налаштування сайту',
+                        'icon': 'settings',
+                        'link': reverse_lazy('admin:core_sitesettings_changelist'),
+                    },
+                ],
+            },
+            {
+                'title': 'Контент сторінок',
+                'separator': True,
+                'items': build_content_sidebar_items(),
+            },
+            {
+                'title': 'Контент',
+                'separator': True,
+                'items': [
+                    {
+                        'title': 'Послуги',
+                        'icon': 'medical_services',
+                        'link': reverse_lazy('admin:clinic_service_changelist'),
+                    },
+                    {
+                        'title': 'Лікарі',
+                        'icon': 'person',
+                        'link': reverse_lazy('admin:clinic_doctor_changelist'),
+                    },
+                    {
+                        'title': 'Переваги',
+                        'icon': 'star',
+                        'link': reverse_lazy('admin:clinic_advantage_changelist'),
+                    },
+                ],
+            },
+            {
+                'title': 'CRM',
+                'separator': True,
+                'items': [
+                    {
+                        'title': 'Заявки на запис',
+                        'icon': 'calendar_today',
+                        'link': reverse_lazy('admin:bookings_appointmentrequest_changelist'),
+                    },
+                    {
+                        'title': 'Заявки з попапу',
+                        'icon': 'phone_callback',
+                        'link': reverse_lazy('admin:bookings_callbacklead_changelist'),
+                    },
+                    {
+                        'title': 'Звернення з контактів',
+                        'icon': 'mail',
+                        'link': reverse_lazy('admin:clinic_contactmessage_changelist'),
+                    },
+                ],
+            },
+        ],
     },
 }
 

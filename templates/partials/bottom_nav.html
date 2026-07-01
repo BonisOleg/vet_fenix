@@ -1,23 +1,14 @@
 {% load vet_icons %}
-<nav class="bottom-nav" aria-label="Мобільна навігація">
-  <a href="{% url 'clinic:home' %}" class="tab {% if active_nav == 'home' %}active{% endif %}">
-    <span class="nav-ico">{% icon 'home' 20 %}</span>
-    <span class="bottom-nav__label">Головна</span>
+{% if site_nav_bottom %}
+<nav
+  class="bottom-nav bottom-nav--count-{{ site_nav_bottom|length }}"
+  aria-label="Мобільна навігація"
+>
+  {% for item in site_nav_bottom %}
+  <a href="{% url item.url_name %}" class="tab {% if active_nav == item.nav_id %}active{% endif %}">
+    <span class="nav-ico">{% icon item.icon 20 %}</span>
+    <span class="bottom-nav__label">{{ item.label }}</span>
   </a>
-  <a href="{% url 'clinic:services' %}" class="tab {% if active_nav == 'services' %}active{% endif %}">
-    <span class="nav-ico">{% icon 'grid' 20 %}</span>
-    <span class="bottom-nav__label">Послуги</span>
-  </a>
-  <a href="{% url 'bookings:booking' %}" class="tab {% if active_nav == 'booking' %}active{% endif %}">
-    <span class="nav-ico">{% icon 'calendar' 20 %}</span>
-    <span class="bottom-nav__label">Запис</span>
-  </a>
-  <a href="{% url 'clinic:doctors' %}" class="tab {% if active_nav == 'doctors' %}active{% endif %}">
-    <span class="nav-ico">{% icon 'user' 20 %}</span>
-    <span class="bottom-nav__label">Лікарі</span>
-  </a>
-  <a href="{% url 'clinic:contacts' %}" class="tab {% if active_nav == 'contacts' %}active{% endif %}">
-    <span class="nav-ico">{% icon 'pin' 20 %}</span>
-    <span class="bottom-nav__label">Контакти</span>
-  </a>
+  {% endfor %}
 </nav>
+{% endif %}
