@@ -1,13 +1,12 @@
 services:
   nginx:
-    build:
-      context: .
-      dockerfile: ./deploy/nginx/Dockerfile
+    image: nginx:1.27-alpine
     ports:
       - "80:80"
     volumes:
-      - static_volume:/app/staticfiles
-      - media_volume:/app/media
+      - ./deploy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_volume:/app/staticfiles:ro
+      - media_volume:/app/media:ro
     depends_on:
       backend:
         condition: service_healthy

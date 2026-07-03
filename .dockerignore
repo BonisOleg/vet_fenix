@@ -16,3 +16,10 @@ media
 .DS_Store
 .vscode
 scripts/dev-server-daemon.sh
+scripts/
+*.md
+Dockerfile*
+docker-compose*.yml
+.pytest_cache
+.mypy_cache
+.ruff_cache
