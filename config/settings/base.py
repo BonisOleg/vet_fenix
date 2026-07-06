@@ -178,10 +178,10 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 UNFOLD = {
-    'SITE_TITLE': 'Фенікс - Адмін панель',
-    'SITE_HEADER': 'Фенікс - Адмін панель',
+    'SITE_TITLE': 'Адмін панель Фенікс',
+    'SITE_HEADER': 'Адмін панель Фенікс',
     'SITE_SYMBOL': None,
-    'SITE_ICON': lambda request: versioned_static('images/favicon-32.png'),
+    'SITE_ICON': None,
     'SITE_FAVICONS': [
         {
             'rel': 'icon',
@@ -266,6 +266,21 @@ UNFOLD = {
                 ],
             },
         ],
+    },
+    'COLORS': {
+        'primary': {
+            '50': 'oklch(97.5% 0.02 55)',
+            '100': 'oklch(94% 0.05 52)',
+            '200': 'oklch(88% 0.10 50)',
+            '300': 'oklch(80% 0.14 48)',
+            '400': 'oklch(74% 0.17 46)',
+            '500': 'oklch(68% 0.19 44)',
+            '600': 'oklch(63% 0.19 42)',
+            '700': 'oklch(55% 0.17 40)',
+            '800': 'oklch(47% 0.14 38)',
+            '900': 'oklch(40% 0.12 36)',
+            '950': 'oklch(30% 0.10 34)',
+        },
     },
 }
 
