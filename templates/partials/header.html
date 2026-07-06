@@ -1,22 +1,22 @@
-{% load vet_icons %}
+{% load vet_icons vet_static %}
 <header class="appbar">
   <div class="appbar-inner{% if site_nav_primary|length < 4 %} appbar-inner--nav-compact{% endif %}">
     <a href="{% url 'clinic:home' %}" class="logo">
       {% if site.logo %}
       <img src="{{ site.logo.url }}" alt="{{ site.clinic_name_line2 }}" class="logo-img" width="32" height="32">
       {% else %}
-      <div class="logo-mark" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            fill="currentColor"
-            d="M10.5 4h3a1.5 1.5 0 011.5 1.5v3.5H19a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-4v3.5A1.5 1.5 0 0113.5 20h-3a1.5 1.5 0 01-1.5-1.5v-3.5H5A1.5 1.5 0 013.5 13.5v-3A1.5 1.5 0 015 9h4V5.5A1.5 1.5 0 0110.5 4z"
-          />
-        </svg>
-      </div>
+      <img
+        src="{% static_v 'images/brand-icon.png' %}"
+        srcset="{% static_v 'images/brand-icon@2x.png' %} 2x"
+        alt="{{ site.clinic_name_line2 }}"
+        class="logo-img"
+        width="32"
+        height="32"
+      >
       {% endif %}
       <div class="brand-text">
         <span class="brand-l1">{{ site.clinic_name_line1 }}</span>
-        <span class="brand-l2">{{ site.clinic_name_line2 }}</span>
+        <span class="brand-l2" title="{{ site.clinic_name_line1|capfirst }}">{{ site.clinic_name_line2 }}</span>
       </div>
     </a>
     {% if site_nav_primary %}

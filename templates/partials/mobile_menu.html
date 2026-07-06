@@ -5,7 +5,7 @@
     <div class="mobile-menu__head">
       <div class="mobile-menu__brand">
         <span class="mobile-menu__eyebrow">{{ site.clinic_name_line1 }}</span>
-        <span class="mobile-menu__title">{{ site.clinic_name_line2 }}</span>
+        <span class="mobile-menu__title" title="{{ site.clinic_name_line1|capfirst }}">{{ site.clinic_name_line2 }}</span>
       </div>
       <button type="button" class="icon-btn mobile-menu__close" data-menu-close aria-label="Закрити меню">
         {% icon 'arrow-left' 18 %}
