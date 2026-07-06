@@ -7,6 +7,11 @@
 
 {% block nav-global %}{% endblock %}
 
+{% block content %}
+{% include "admin/partials/layout_warning.html" %}
+{{ block.super }}
+{% endblock %}
+
 {% block extrastyle %}
 {{ block.super }}
 <link rel="icon" href="{% static_v 'images/favicon.ico' %}" sizes="any">

@@ -15,6 +15,22 @@ class ReadableUnfoldFieldsMixin:
         return formfield
 
 
+class AdminFieldGuidesMixin:
+    guide_model_label: str = ''
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        formfield = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if formfield is None:
+            return formfield
+        from core.admin_field_guides import get_guide
+
+        model_label = self.guide_model_label or self.model._meta.label.split('.')[-1]
+        guide = get_guide(model_label, db_field.name)
+        if guide:
+            formfield.help_text = guide
+        return formfield
+
+
 class SingletonModelAdminMixin:
     def has_add_permission(self, request) -> bool:
         return not SiteSettings.objects.exists()

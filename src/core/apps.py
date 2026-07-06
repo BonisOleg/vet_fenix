@@ -26,6 +26,7 @@ class CoreConfig(AppConfig):
 
     def ready(self) -> None:
         _connect_site_block_cache_signals()
+        from core import signals  # noqa: F401
 
         if not settings.DEBUG:
             return

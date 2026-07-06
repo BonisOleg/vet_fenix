@@ -254,7 +254,7 @@ UNFOLD = {
                         'link': reverse_lazy('admin:bookings_appointmentrequest_changelist'),
                     },
                     {
-                        'title': 'Заявки з попапу',
+                        'title': 'Запити на передзвінок',
                         'icon': 'phone_callback',
                         'link': reverse_lazy('admin:bookings_callbacklead_changelist'),
                     },

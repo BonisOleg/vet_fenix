@@ -9,6 +9,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from unfold.widgets import UnfoldAdminFileFieldWidget, UnfoldBooleanWidget
 
+from core.admin_field_guides import get_block_help
 from core.admin_site_content_widgets import CmsAdminTextInputWidget, CmsAdminTextareaWidget
 from core.block_defaults import (
     BLOCK_CONTENT_TYPES,
@@ -139,18 +140,22 @@ class SitePageContentForm(forms.Form):
                 initial=block.text_html,
                 required=False,
                 widget=widget,
+                help_text=get_block_help(page, key),
             )
             return
 
         if block.content_type == SiteBlock.ContentType.IMAGE:
             image_field = block_field_name(page, key, 'image')
+            help_parts = [get_block_help(page, key)]
+            if block.image:
+                help_parts.append(f'Поточне: {block.image.name}')
             self.fields[image_field] = forms.ImageField(
                 label=field_label,
                 required=False,
                 widget=UnfoldAdminFileFieldWidget(),
+                help_text=' '.join(part for part in help_parts if part),
             )
-            if block.image:
-                self.fields[image_field].help_text = f'Поточне: {block.image.name}'
+            return
 
     @transaction.atomic
     def save(self) -> None:

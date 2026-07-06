@@ -2,13 +2,15 @@ from django.contrib import admin
 from django.utils.html import format_html
 from tinymce.widgets import TinyMCE
 from unfold.admin import ModelAdmin
+from unfold.widgets import UnfoldAdminImageFieldWidget
 
-from core.admin_mixins import ReadableUnfoldFieldsMixin
+from core.admin_mixins import AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin
 from clinic.models import Advantage, ContactMessage, Doctor, Service
 
 
 @admin.register(Service)
-class ServiceAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
+class ServiceAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, ModelAdmin):
+    guide_model_label = 'Service'
     list_display = ('name', 'slug', 'price_hint', 'is_urgent', 'order', 'is_active')
     list_editable = ('order', 'is_active')
     list_filter = ('is_urgent', 'is_active', 'icon')
@@ -43,7 +45,8 @@ class ServiceAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
 
 
 @admin.register(Doctor)
-class DoctorAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
+class DoctorAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, ModelAdmin):
+    guide_model_label = 'Doctor'
     list_display = (
         'get_photo_preview',
         'name',
@@ -72,12 +75,19 @@ class DoctorAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
                     'bio',
                     'experience_years',
                     'initials',
-                    'photo',
-                    'get_photo_preview',
                     'rating',
                     'patients_label',
                     'order',
                     'is_active',
+                ),
+            },
+        ),
+        (
+            'Фото',
+            {
+                'fields': (
+                    'photo',
+                    'get_photo_preview',
                 ),
             },
         ),
@@ -96,11 +106,14 @@ class DoctorAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'bio':
             kwargs['widget'] = TinyMCE()
+        if db_field.name == 'photo':
+            kwargs['widget'] = UnfoldAdminImageFieldWidget()
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
 @admin.register(Advantage)
-class AdvantageAdmin(ReadableUnfoldFieldsMixin, ModelAdmin):
+class AdvantageAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, ModelAdmin):
+    guide_model_label = 'Advantage'
     list_display = ('title', 'icon', 'order', 'is_alt', 'is_active')
     list_editable = ('order', 'is_alt', 'is_active')
     list_filter = ('icon', 'is_alt')

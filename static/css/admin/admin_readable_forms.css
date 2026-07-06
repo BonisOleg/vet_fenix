@@ -8,3 +8,25 @@
 #content .group .leading-relaxed {
   color: rgb(var(--color-base-400) / 1);
 }
+
+.admin-layout-warning {
+  margin: 0 0 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgb(var(--color-primary-600) / 0.35);
+  border-radius: var(--border-radius, 6px);
+  background: rgb(var(--color-primary-600) / 0.08);
+  color: rgb(var(--color-base-100) / 1);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.admin-layout-warning p {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .admin-layout-warning {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.75rem;
+  }
+}

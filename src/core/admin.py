@@ -1,12 +1,14 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
+from unfold.widgets import UnfoldAdminImageFieldWidget
 
-from core.admin_utils import ReadableUnfoldFieldsMixin, SingletonModelAdminMixin
+from core.admin_utils import AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, SingletonModelAdminMixin
 from core.models import SiteSettings
 
 
 @admin.register(SiteSettings)
-class SiteSettingsAdmin(ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, ModelAdmin):
+class SiteSettingsAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, ModelAdmin):
+    guide_model_label = 'SiteSettings'
     list_display = ('clinic_name_line1', 'clinic_name_line2', 'phone_primary')
 
     fieldsets = (
@@ -38,6 +40,11 @@ class SiteSettingsAdmin(ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, Mod
             },
         ),
     )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == 'logo':
+            kwargs['widget'] = UnfoldAdminImageFieldWidget()
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
 from core import admin_site_content_proxies  # noqa: E402, F401

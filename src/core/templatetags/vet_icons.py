@@ -40,7 +40,11 @@ ICONS = {
         '<path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/>'
         '<path d="M9 12l2 2 4-4"/>'
     ),
-    'heart': '<path d="M3 12h4l2-5 3 9 2-4h7"/>',
+    'heart': (
+        '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 '
+        'c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 '
+        'c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>'
+    ),
     'phone': (
         '<path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 '
         '19.5 19.5 0 01-6-6A19.86 19.86 0 012.13 4.18 2 2 0 014.11 2h3a2 2 0 '
@@ -93,17 +97,24 @@ ICONS = {
         '<path d="M2 10h20"/>'
         '<path d="M16 14h2"/>'
     ),
+    'paw': (
+        '<circle cx="8" cy="8" r="2"/>'
+        '<circle cx="16" cy="8" r="2"/>'
+        '<circle cx="6" cy="13" r="1.8"/>'
+        '<circle cx="18" cy="13" r="1.8"/>'
+        '<path d="M12 20c-3-2.5-5-5-5-7.5a5 5 0 0110 0C17 15 15 17.5 12 20z"/>'
+    ),
+    'award': (
+        '<circle cx="12" cy="9" r="5"/>'
+        '<path d="M8.5 14L7 21l5-2.5L17 21l-1.5-7"/>'
+    ),
 }
 
 
 @register.simple_tag
 def icon(name: str, size: int = 22, stroke: float = 2) -> str:
     del stroke  # stroke via .icon CSS
-    paths = ICONS.get(name, '')
-    if name == 'star':
-        inner = '<path d="M12 2l3 6.5 7 1-5 5 1 7-6-3.5L6 21.5l1-7-5-5 7-1z"/>'
-    else:
-        inner = paths
+    inner = ICONS.get(name, '')
     svg = (
         f'<svg class="icon icon--{name}" width="{size}" height="{size}" '
         f'viewBox="0 0 24 24" aria-hidden="true">{inner}</svg>'

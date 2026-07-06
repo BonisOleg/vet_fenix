@@ -15,6 +15,16 @@ class AdvantageIcon(models.TextChoices):
     SHIELD = 'shield', 'Щит'
     STAR = 'star', 'Зірка'
     HEART = 'heart', 'Серце'
+    PHONE = 'phone', 'Телефон'
+    PIN = 'pin', 'Локація'
+    USER = 'user', 'Команда'
+    CHECK = 'check', 'Якість'
+    CALENDAR = 'calendar', 'Графік'
+    HOME = 'home', 'Догляд вдома'
+    FILE = 'file', 'Документи'
+    WALLET = 'wallet', 'Ціни'
+    PAW = 'paw', 'Лапа'
+    AWARD = 'award', 'Нагорода'
 
 
 class Service(models.Model):

@@ -1,3 +1,7 @@
-from core.admin_utils import ReadableUnfoldFieldsMixin, SingletonModelAdminMixin
+from core.admin_utils import AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, SingletonModelAdminMixin
 
-__all__ = ['ReadableUnfoldFieldsMixin', 'SingletonModelAdminMixin']
+__all__ = [
+    'AdminFieldGuidesMixin',
+    'ReadableUnfoldFieldsMixin',
+    'SingletonModelAdminMixin',
+]

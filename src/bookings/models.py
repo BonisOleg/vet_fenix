@@ -63,8 +63,8 @@ class CallbackLead(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        verbose_name = 'Заявка з попапу'
-        verbose_name_plural = 'Заявки з попапу'
+        verbose_name = 'Запит на передзвінок'
+        verbose_name_plural = 'Запити на передзвінок'
 
     def __str__(self) -> str:
         service_name = self.service.name if self.service else '—'
