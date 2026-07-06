@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260706e')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260706f')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -178,8 +178,8 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 UNFOLD = {
-    'SITE_TITLE': 'Фенікс',
-    'SITE_HEADER': 'Фенікс — Адмінпанель',
+    'SITE_TITLE': 'Фенікс - Адмін панель',
+    'SITE_HEADER': 'Фенікс - Адмін панель',
     'SITE_SYMBOL': None,
     'SITE_ICON': lambda request: versioned_static('images/favicon-32.png'),
     'SITE_FAVICONS': [
