@@ -5,7 +5,7 @@ from django.conf import settings as django_settings
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 
-from core.site_content_registry import build_content_sidebar_items
+from core.site_content_registry import build_content_sidebar_navigation
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260706')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260706b')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -222,11 +222,7 @@ UNFOLD = {
                     },
                 ],
             },
-            {
-                'title': 'Контент сторінок',
-                'separator': True,
-                'items': build_content_sidebar_items(),
-            },
+            *build_content_sidebar_navigation(),
             {
                 'title': 'Контент',
                 'separator': True,

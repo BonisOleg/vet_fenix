@@ -229,14 +229,20 @@ def _bound_fields_for_keys(
     return fields
 
 
-def _section_fieldsets(form: SitePageContentForm, section: ContentSection) -> list[tuple[str, list]]:
-    fieldsets: list[tuple[str, list]] = []
+def _section_fieldsets(form: SitePageContentForm, section: ContentSection) -> list[dict]:
+    fieldsets: list[dict] = []
 
     if section.field_groups:
-        for group in section.field_groups:
+        for index, group in enumerate(section.field_groups):
             fields = _bound_fields_for_keys(form, section, group.block_keys)
             if fields:
-                fieldsets.append((group.title, fields))
+                fieldsets.append(
+                    {
+                        'title': group.title,
+                        'fields': fields,
+                        'open': index == 0 or any(field.errors for field in fields),
+                    }
+                )
     elif section.blocks:
         fields = []
         for page, key in section.blocks:
@@ -252,7 +258,13 @@ def _section_fieldsets(form: SitePageContentForm, section: ContentSection) -> li
             if name in form.fields:
                 fields.append(form[name])
         if fields:
-            fieldsets.append(('', fields))
+            fieldsets.append(
+                {
+                    'title': '',
+                    'fields': fields,
+                    'open': True,
+                }
+            )
 
     return fieldsets
 

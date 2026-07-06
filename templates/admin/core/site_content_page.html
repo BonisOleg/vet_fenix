@@ -5,7 +5,7 @@
 
 {% block extrastyle %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}?v=20260629c">
+<link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}?v=20260706b">
 {% endblock %}
 
 {% block extrahead %}
@@ -70,17 +70,22 @@
         {% endif %}
 
         <div class="site-content-editor__fieldsets">
-            {% for fieldset_title, fieldset_fields in fieldsets %}
-            <section class="site-content-fieldset border border-base-200 dark:border-base-700 rounded-default shadow-sm dark:bg-base-900 p-4 md:p-5">
-                {% if fieldset_title %}
-                <h2 class="site-content-fieldset__title text-font-important-light dark:text-font-important-dark">{{ fieldset_title }}</h2>
-                {% endif %}
-                <div class="site-content-fieldset__fields">
-                    {% for field in fieldset_fields %}
-                        {% include "unfold/helpers/field.html" with field=field %}
-                    {% endfor %}
+            {% for fieldset in fieldsets %}
+            <details class="site-content-fieldset border border-base-200 dark:border-base-700 rounded-default shadow-sm dark:bg-base-900"{% if fieldset.open %} open{% endif %}>
+                <summary class="site-content-fieldset__summary">
+                    {% if fieldset.title %}
+                    <span class="site-content-fieldset__title text-font-important-light dark:text-font-important-dark">{{ fieldset.title }}</span>
+                    {% endif %}
+                    <span class="material-symbols-outlined site-content-fieldset__chevron" aria-hidden="true">expand_more</span>
+                </summary>
+                <div class="site-content-fieldset__body p-4 md:p-5">
+                    <div class="site-content-fieldset__fields">
+                        {% for field in fieldset.fields %}
+                            {% include "unfold/helpers/field.html" with field=field %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </section>
+            </details>
             {% endfor %}
         </div>
 

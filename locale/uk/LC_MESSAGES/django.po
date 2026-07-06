@@ -170,14 +170,94 @@ msgstr "Домівка"
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
 
-msgid "Yes, I'm sure"
-msgstr "Так, впевнений"
-
-msgid "No, take me back"
-msgstr "Ні, повернутися"
-
 msgid "Please correct the errors below."
 msgstr "Виправте помилки нижче."
 
 msgid "Please correct the error below."
 msgstr "Виправте помилку нижче."
+
+msgid "Choose file to upload"
+msgstr "Оберіть файл для завантаження"
+
+msgid "Image preview"
+msgstr "Попередній перегляд зображення"
+
+msgid "Toggle password visibility"
+msgstr "Показати або приховати пароль"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Submit"
+msgstr "Надіслати"
+
+msgid "Next"
+msgstr "Далі"
+
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Add row"
+msgstr "Додати рядок"
+
+msgid "Expand row"
+msgstr "Розгорнути рядок"
+
+msgid "History"
+msgstr "Історія"
+
+msgid "No data"
+msgstr "Немає даних"
+
+msgid "Unknown"
+msgstr "Невідомо"
+
+msgid "Loading more results..."
+msgstr "Завантаження результатів..."
+
+msgid "No results matching your query"
+msgstr "Немає результатів за вашим запитом"
+
+msgid "Recent searches"
+msgstr "Останні пошуки"
+
+msgid "No recent searches"
+msgstr "Немає останніх пошуків"
+
+msgid "Run the selected action"
+msgstr "Виконати обрану дію"
+
+msgid "Return to site"
+msgstr "Повернутися на сайт"
+
+msgid "Log in again"
+msgstr "Увійти знову"
+
+msgid "Thanks for spending some quality time with the web site today."
+msgstr "Дякуємо, що сьогодні користувалися сайтом."
+
+msgid "This item will be deleted."
+msgstr "Цей елемент буде видалено."
+
+msgid "After you"
+msgstr "Після того як ви"
+
+msgid "Click to cancel"
+msgstr "Натисніть, щоб скасувати"
+
+msgid "Click to download"
+msgstr "Натисніть, щоб завантажити"
+
+msgid "True"
+msgstr "Так"
+
+msgid "False"
+msgstr "Ні"
+
+
+msgid "Yes, I’m sure"
+msgstr "Так, впевнений"
+
+msgid "No, take me back"
+msgstr "Ні, повернутися"
+

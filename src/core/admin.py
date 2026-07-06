@@ -13,6 +13,7 @@ class SiteSettingsAdmin(ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, Mod
         (
             'Бренд',
             {
+                'classes': ('collapse',),
                 'fields': (
                     'clinic_name_line1',
                     'clinic_name_line2',
@@ -27,6 +28,7 @@ class SiteSettingsAdmin(ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, Mod
         (
             'Контакти',
             {
+                'classes': ('collapse',),
                 'fields': (
                     'address',
                     'phone_primary',

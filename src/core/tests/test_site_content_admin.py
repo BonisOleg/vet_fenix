@@ -26,6 +26,8 @@ class SiteContentAdminTests(TestCase):
         self.assertContains(response, 'hero_title')
         self.assertContains(response, 'bg-base-900')
         self.assertContains(response, 'text-base-100')
+        self.assertContains(response, 'site-content-fieldset__summary')
+        self.assertContains(response, '<details')
 
     def test_cms_text_inputs_have_no_white_background(self):
         import re

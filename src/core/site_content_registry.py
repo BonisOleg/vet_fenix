@@ -267,15 +267,46 @@ def all_registry_block_keys() -> set[tuple[str, str]]:
     return keys
 
 
+PAGE_SIDEBAR_GROUPS: tuple[tuple[str, str], ...] = (
+    ('home', 'Головна'),
+    ('services', 'Послуги'),
+    ('doctors', 'Лікарі'),
+    ('contacts', 'Контакти'),
+    ('site', 'Сайт'),
+)
+
+
+def _section_sidebar_item(section: ContentSection) -> dict:
+    return {
+        'title': section.sidebar_title or section.title,
+        'icon': section.sidebar_icon,
+        'link': reverse_lazy(f'admin:core_{section.admin_model_name}_changelist'),
+    }
+
+
 def build_content_sidebar_items() -> list[dict]:
-    return [
-        {
-            'title': section.sidebar_title or section.title,
-            'icon': section.sidebar_icon,
-            'link': reverse_lazy(f'admin:core_{section.admin_model_name}_changelist'),
-        }
-        for section in CONTENT_SECTIONS
-    ]
+    return [_section_sidebar_item(section) for section in CONTENT_SECTIONS]
+
+
+def build_content_sidebar_navigation() -> list[dict]:
+    sections_by_page: dict[str, list[ContentSection]] = {slug: [] for slug, _ in PAGE_SIDEBAR_GROUPS}
+    for section in CONTENT_SECTIONS:
+        sections_by_page.setdefault(section.page_slug, []).append(section)
+
+    navigation: list[dict] = []
+    for index, (page_slug, title) in enumerate(PAGE_SIDEBAR_GROUPS):
+        items = [_section_sidebar_item(section) for section in sections_by_page.get(page_slug, [])]
+        if not items:
+            continue
+        navigation.append(
+            {
+                'title': title,
+                'collapsible': True,
+                'separator': index == 0,
+                'items': items,
+            }
+        )
+    return navigation
 
 
 def get_visibility_block_key(page_slug: str, section_slug: str) -> str:
