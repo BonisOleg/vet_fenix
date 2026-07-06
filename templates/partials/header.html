@@ -2,6 +2,9 @@
 <header class="appbar">
   <div class="appbar-inner{% if site_nav_primary|length < 4 %} appbar-inner--nav-compact{% endif %}">
     <a href="{% url 'clinic:home' %}" class="logo">
+      {% if site.logo %}
+      <img src="{{ site.logo.url }}" alt="{{ site.clinic_name_line2 }}" class="logo-img" width="32" height="32">
+      {% else %}
       <div class="logo-mark" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
@@ -10,6 +13,7 @@
           />
         </svg>
       </div>
+      {% endif %}
       <div class="brand-text">
         <span class="brand-l1">{{ site.clinic_name_line1 }}</span>
         <span class="brand-l2">{{ site.clinic_name_line2 }}</span>

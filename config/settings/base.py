@@ -1,11 +1,20 @@
 from pathlib import Path
 
 from decouple import config
+from django.conf import settings as django_settings
+from django.templatetags.static import static
 from django.urls import reverse_lazy
 
 from core.site_content_registry import build_content_sidebar_items
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+
+def versioned_static(path: str) -> str:
+    url = static(path)
+    version = django_settings.STATIC_ASSET_VERSION
+    separator = '&' if '?' in url else '?'
+    return f'{url}{separator}v={version}'
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
@@ -37,6 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -95,12 +105,15 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'uk'
 TIME_ZONE = 'Europe/Kyiv'
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
+
+LOCALE_PATHS = [BASE_DIR / 'locale']
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260528')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260706')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -167,7 +180,32 @@ TINYMCE_DEFAULT_CONFIG = {
 UNFOLD = {
     'SITE_TITLE': 'Фенікс',
     'SITE_HEADER': 'Фенікс — Адмінпанель',
-    'SITE_SYMBOL': 'pets',
+    'SITE_SYMBOL': None,
+    'SITE_ICON': lambda request: versioned_static('images/favicon-32.png'),
+    'SITE_FAVICONS': [
+        {
+            'rel': 'icon',
+            'sizes': 'any',
+            'href': lambda request: versioned_static('images/favicon.ico'),
+        },
+        {
+            'rel': 'icon',
+            'type': 'image/png',
+            'sizes': '32x32',
+            'href': lambda request: versioned_static('images/favicon-32.png'),
+        },
+        {
+            'rel': 'icon',
+            'type': 'image/png',
+            'sizes': '16x16',
+            'href': lambda request: versioned_static('images/favicon-16.png'),
+        },
+        {
+            'rel': 'apple-touch-icon',
+            'sizes': '180x180',
+            'href': lambda request: versioned_static('images/apple-touch-icon.png'),
+        },
+    ],
     'SIDEBAR': {
         'show_search': True,
         'command_search': True,
@@ -211,7 +249,7 @@ UNFOLD = {
                 ],
             },
             {
-                'title': 'CRM',
+                'title': 'Заявки клієнтів',
                 'separator': True,
                 'items': [
                     {

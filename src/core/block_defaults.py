@@ -13,10 +13,10 @@ BLOCK_FIELD_LABELS: dict[tuple[str, str], str] = {
     ('home', 'hero_cta_booking'): 'Текст кнопки «Записатись»',
     ('home', 'hero_cta_suffix'): 'Суфікс кнопки (напр. « онлайн»)',
     ('home', 'hero_cta_phone'): 'Текст кнопки «Подзвонити»',
-    ('home', 'hero_image'): 'Фото hero',
+    ('home', 'hero_image'): 'Фото банера',
     ('home', 'hero_image_alt'): 'Alt-текст фото',
-    ('home', 'hero_stat_number'): 'Hero картка (число)',
-    ('home', 'hero_stat_label'): 'Hero картка (підпис)',
+    ('home', 'hero_stat_number'): 'Банер картка (число)',
+    ('home', 'hero_stat_label'): 'Банер картка (підпис)',
     ('home', 'advantages_section_title'): 'Заголовок секції',
     ('home', 'services_preview_tag'): 'Мітка',
     ('home', 'services_preview_title'): 'Заголовок',
@@ -36,8 +36,8 @@ BLOCK_FIELD_LABELS: dict[tuple[str, str], str] = {
     ('contacts', 'header_lead'): 'Підзаголовок',
     ('contacts', 'clinic_block_title'): 'Заголовок блоку',
     ('contacts', 'form_block_title'): 'Заголовок блоку',
-    ('site', 'footer_instagram_url'): 'Instagram URL',
-    ('site', 'footer_telegram_url'): 'Telegram URL',
+    ('site', 'footer_instagram_url'): 'Посилання Instagram',
+    ('site', 'footer_telegram_url'): 'Посилання Telegram',
 }
 
 BLOCK_DEFAULTS: dict[tuple[str, str], str] = {

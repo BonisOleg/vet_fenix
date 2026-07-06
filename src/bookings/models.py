@@ -12,28 +12,30 @@ class AppointmentStatus(models.TextChoices):
 
 
 class AppointmentRequest(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.PROTECT, related_name='appointments')
+    service = models.ForeignKey(Service, on_delete=models.PROTECT, related_name='appointments', verbose_name='Послуга')
     doctor = models.ForeignKey(
         Doctor,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name='appointments',
+        verbose_name='Лікар',
     )
-    owner_name = models.CharField(max_length=120)
-    phone = models.CharField(max_length=32)
-    pet_name = models.CharField(max_length=80, blank=True)
-    pet_type = models.CharField(max_length=32, choices=settings.PET_TYPE_CHOICES)
-    preferred_date = models.DateField()
-    preferred_time = models.CharField(max_length=8)
-    comment = models.TextField(blank=True)
+    owner_name = models.CharField('Імʼя власника', max_length=120)
+    phone = models.CharField('Телефон', max_length=32)
+    pet_name = models.CharField('Кличка тварини', max_length=80, blank=True)
+    pet_type = models.CharField('Вид тварини', max_length=32, choices=settings.PET_TYPE_CHOICES)
+    preferred_date = models.DateField('Бажана дата')
+    preferred_time = models.CharField('Бажаний час', max_length=8)
+    comment = models.TextField('Коментар', blank=True)
     status = models.CharField(
+        'Статус',
         max_length=16,
         choices=AppointmentStatus.choices,
         default=AppointmentStatus.NEW,
     )
-    source_page = models.CharField(max_length=32, default='booking')
-    created_at = models.DateTimeField(auto_now_add=True)
+    source_page = models.CharField('Джерело', max_length=32, default='booking')
+    created_at = models.DateTimeField('Створено', auto_now_add=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -45,18 +47,19 @@ class AppointmentRequest(models.Model):
 
 
 class CallbackLead(models.Model):
-    name = models.CharField(max_length=120)
-    phone = models.CharField(max_length=32)
+    name = models.CharField('Імʼя', max_length=120)
+    phone = models.CharField('Телефон', max_length=32)
     service = models.ForeignKey(
         Service,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name='callback_leads',
+        verbose_name='Послуга',
     )
-    comment = models.TextField(blank=True)
-    source_page = models.CharField(max_length=64, default='popup')
-    created_at = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField('Коментар', blank=True)
+    source_page = models.CharField('Джерело', max_length=64, default='popup')
+    created_at = models.DateTimeField('Створено', auto_now_add=True)
 
     class Meta:
         ordering = ['-created_at']

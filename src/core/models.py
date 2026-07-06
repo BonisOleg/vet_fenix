@@ -4,13 +4,14 @@ from django.db import models
 class SiteSettings(models.Model):
     clinic_name_line1 = models.CharField('Назва (рядок 1)', max_length=64, default='ветеринарна клініка')
     clinic_name_line2 = models.CharField('Назва (рядок 2)', max_length=64, default='Фенікс')
+    logo = models.ImageField('Логотип', upload_to='brand/', blank=True)
     tagline = models.CharField('Слоган', max_length=200, blank=True)
     address = models.CharField('Адреса', max_length=255, default='м. Київ, вул. Ірпінська, 67б')
     phone_primary = models.CharField('Телефон', max_length=32, default='+380933839933')
     phone_secondary = models.CharField('Телефон 2', max_length=32, blank=True, default='+380983839033')
-    email = models.EmailField('Email', blank=True, default='')
+    email = models.EmailField('Електронна пошта', blank=True, default='')
     is_open_now = models.BooleanField('Працюємо зараз', default=True)
-    trust_label = models.CharField('Trust strip', max_length=64, default='Працюємо зараз')
+    trust_label = models.CharField('Смуга довіри', max_length=64, default='Працюємо зараз')
     hours_label = models.CharField('Години роботи', max_length=64, default='Цілодобово')
 
     class Meta:
@@ -78,8 +79,8 @@ class SiteBlock(models.Model):
 class HomeHeroSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Головна — Hero'
-        verbose_name_plural = 'Головна — Hero'
+        verbose_name = 'Головна — Банер'
+        verbose_name_plural = 'Головна — Банер'
 
 
 class HomeAdvantagesSettings(SiteSettings):
@@ -106,22 +107,22 @@ class HomeDoctorsPreviewSettings(SiteSettings):
 class ServicesPageHeaderSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Послуги — Шапка'
-        verbose_name_plural = 'Послуги — Шапка'
+        verbose_name = 'Послуги — Заголовок'
+        verbose_name_plural = 'Послуги — Заголовок'
 
 
 class DoctorsPageHeaderSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Лікарі — Шапка'
-        verbose_name_plural = 'Лікарі — Шапка'
+        verbose_name = 'Лікарі — Заголовок'
+        verbose_name_plural = 'Лікарі — Заголовок'
 
 
 class ContactsPageHeaderSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Контакти — Шапка'
-        verbose_name_plural = 'Контакти — Шапка'
+        verbose_name = 'Контакти — Заголовок'
+        verbose_name_plural = 'Контакти — Заголовок'
 
 
 class ContactsClinicInfoSettings(SiteSettings):
@@ -148,12 +149,12 @@ class ContactsMapSettings(SiteSettings):
 class TrustStripSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Trust strip'
-        verbose_name_plural = 'Trust strip'
+        verbose_name = 'Смуга довіри'
+        verbose_name_plural = 'Смуга довіри'
 
 
 class FooterSocialSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Footer — Соцмережі'
-        verbose_name_plural = 'Footer — Соцмережі'
+        verbose_name = 'Футер — Соцмережі'
+        verbose_name_plural = 'Футер — Соцмережі'

@@ -18,16 +18,16 @@ class AdvantageIcon(models.TextChoices):
 
 
 class Service(models.Model):
-    slug = models.SlugField(unique=True)
-    name = models.CharField(max_length=120)
-    short_description = models.CharField(max_length=120)
-    full_description = models.TextField()
-    price_hint = models.CharField(max_length=64, blank=True)
-    icon = models.CharField(max_length=32, choices=ServiceIcon.choices, default=ServiceIcon.STEHOSCOPE)
-    bullets = models.JSONField(default=list, blank=True)
-    is_urgent = models.BooleanField(default=False)
-    order = models.PositiveSmallIntegerField(default=0)
-    is_active = models.BooleanField(default=True)
+    slug = models.SlugField('Слаг', unique=True)
+    name = models.CharField('Назва', max_length=120)
+    short_description = models.CharField('Короткий опис', max_length=120)
+    full_description = models.TextField('Повний опис')
+    price_hint = models.CharField('Ціна (підказка)', max_length=64, blank=True)
+    icon = models.CharField('Іконка', max_length=32, choices=ServiceIcon.choices, default=ServiceIcon.STEHOSCOPE)
+    bullets = models.JSONField('Маркований список', default=list, blank=True)
+    is_urgent = models.BooleanField('Терміново', default=False)
+    order = models.PositiveSmallIntegerField('Порядок', default=0)
+    is_active = models.BooleanField('Активна', default=True)
 
     class Meta:
         ordering = ['order', 'name']
@@ -39,12 +39,12 @@ class Service(models.Model):
 
 
 class Doctor(models.Model):
-    slug = models.SlugField(unique=True)
-    name = models.CharField(max_length=120)
-    specialization = models.CharField(max_length=160)
-    experience_years = models.PositiveSmallIntegerField()
-    initials = models.CharField(max_length=8, blank=True)
-    photo = models.ImageField(upload_to='doctors/', blank=True)
+    slug = models.SlugField('Слаг', unique=True)
+    name = models.CharField('Імʼя', max_length=120)
+    specialization = models.CharField('Спеціалізація', max_length=160)
+    experience_years = models.PositiveSmallIntegerField('Досвід (роки)')
+    initials = models.CharField('Ініціали', max_length=8, blank=True)
+    photo = models.ImageField('Фото', upload_to='doctors/', blank=True)
     rating = models.DecimalField('Рейтинг', max_digits=2, decimal_places=1, default=4.9)
     patients_label = models.CharField(
         'Пацієнти',
@@ -53,8 +53,8 @@ class Doctor(models.Model):
         help_text='Наприклад: 2400+ пацієнтів',
     )
     bio = models.TextField('Коротка біографія', blank=True)
-    order = models.PositiveSmallIntegerField(default=0)
-    is_active = models.BooleanField(default=True)
+    order = models.PositiveSmallIntegerField('Порядок', default=0)
+    is_active = models.BooleanField('Активний', default=True)
 
     class Meta:
         ordering = ['order', 'name']
@@ -87,11 +87,11 @@ class ContactMessage(models.Model):
 
 
 class Advantage(models.Model):
-    icon = models.CharField(max_length=32, choices=AdvantageIcon.choices, default=AdvantageIcon.CLOCK)
-    title = models.CharField(max_length=80)
-    description = models.CharField(max_length=160)
-    order = models.PositiveSmallIntegerField(default=0)
-    is_alt = models.BooleanField(default=False, help_text='Помаранчева іконка')
+    icon = models.CharField('Іконка', max_length=32, choices=AdvantageIcon.choices, default=AdvantageIcon.CLOCK)
+    title = models.CharField('Заголовок', max_length=80)
+    description = models.CharField('Опис', max_length=160)
+    order = models.PositiveSmallIntegerField('Порядок', default=0)
+    is_alt = models.BooleanField('Помаранчева іконка', default=False, help_text='Помаранчева іконка')
     is_active = models.BooleanField('Показувати на сайті', default=True)
 
     class Meta:

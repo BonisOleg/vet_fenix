@@ -16,6 +16,7 @@ class SiteSettingsAdmin(ReadableUnfoldFieldsMixin, SingletonModelAdminMixin, Mod
                 'fields': (
                     'clinic_name_line1',
                     'clinic_name_line2',
+                    'logo',
                     'tagline',
                     'trust_label',
                     'hours_label',

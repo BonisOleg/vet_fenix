@@ -10,7 +10,8 @@ from core.models import SiteSettings
 class ReadableUnfoldFieldsMixin:
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         formfield = super().formfield_for_dbfield(db_field, request, **kwargs)
-        formfield.widget = apply_readable_widget(formfield.widget)
+        if formfield is not None:
+            formfield.widget = apply_readable_widget(formfield.widget)
         return formfield
 
 

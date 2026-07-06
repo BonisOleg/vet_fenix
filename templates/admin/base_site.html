@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n static %}
+{% load i18n static vet_static %}
 
 {% block branding %}
     {% include "unfold/helpers/site_branding.html" %}
@@ -9,5 +9,9 @@
 
 {% block extrastyle %}
 {{ block.super }}
+<link rel="icon" href="{% static_v 'images/favicon.ico' %}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static_v 'images/favicon-32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static_v 'images/favicon-16.png' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static_v 'images/apple-touch-icon.png' %}">
 <link rel="stylesheet" href="{% static 'css/admin/admin_readable_forms.css' %}">
 {% endblock %}

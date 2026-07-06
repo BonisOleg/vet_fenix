@@ -101,6 +101,14 @@
   display: block;
 }
 
+.logo-img {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
 .appbar-cta {
   flex-shrink: 0;
 }
