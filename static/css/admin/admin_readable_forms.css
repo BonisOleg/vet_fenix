@@ -79,25 +79,88 @@
   color: rgb(var(--color-base-400) / 1);
 }
 
-.admin-layout-warning {
+.admin-layout-warning-wrap {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto 1rem;
+  box-sizing: border-box;
+}
+
+.site-content-editor > .admin-layout-warning-wrap {
+  max-width: none;
   margin: 0 0 1rem;
+}
+
+#content-main > .admin-layout-warning-wrap {
+  padding: 0 0.25rem;
+}
+
+.admin-layout-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0;
   padding: 0.875rem 1rem;
-  border: 1px solid color-mix(in srgb, var(--admin-orange) 35%, var(--admin-border));
+  border: 1px solid color-mix(in srgb, var(--admin-orange) 55%, var(--admin-border));
+  border-left-width: 3px;
+  border-left-color: var(--admin-orange);
   border-radius: var(--admin-panel-radius);
-  background: color-mix(in srgb, var(--admin-lime) 30%, var(--admin-cream));
+  background: var(--admin-paper);
   color: var(--admin-graphite);
   font-size: var(--admin-help-font);
   line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(26, 29, 35, 0.04);
+}
+
+.admin-layout-warning__icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--admin-orange);
+}
+
+.admin-layout-warning__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--admin-graphite);
+}
+
+.admin-layout-warning__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--admin-muted);
+}
+
+.admin-layout-warning__list li {
+  margin: 0;
+  padding: 0.1rem 0;
+}
+
+.admin-layout-warning__list li + li {
+  margin-top: 0.2rem;
 }
 
 .dark .admin-layout-warning {
-  border-color: rgb(var(--color-primary-600) / 0.35);
-  background: rgb(var(--color-primary-600) / 0.1);
+  border-color: rgb(var(--color-primary-600) / 0.45);
+  border-left-color: rgb(var(--color-primary-500) / 1);
+  background: rgb(var(--color-base-900) / 1);
+  color: rgb(var(--color-base-100) / 1);
+  box-shadow: none;
+}
+
+.dark .admin-layout-warning__title {
   color: rgb(var(--color-base-100) / 1);
 }
 
-.admin-layout-warning p {
-  margin: 0;
+.dark .admin-layout-warning__list {
+  color: rgb(var(--color-base-400) / 1);
+}
+
+.dark .admin-layout-warning__icon {
+  color: rgb(var(--color-primary-400) / 1);
 }
 
 /* Orange primary actions */
@@ -147,8 +210,16 @@ aside nav a[class*='bg-primary-600']:hover {
     min-height: 2.875rem;
   }
 
+  .admin-layout-warning-wrap {
+    padding: 0;
+  }
+
   .admin-layout-warning {
     padding: 0.75rem 0.875rem;
-    font-size: 0.75rem;
+    gap: 0.625rem;
+  }
+
+  .admin-layout-warning__list {
+    padding-left: 1rem;
   }
 }
