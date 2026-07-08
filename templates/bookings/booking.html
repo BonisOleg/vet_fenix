@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static vet_icons %}
+{% load static %}
 
 {% block title %}Запис · {{ site.clinic_name_line2 }}{% endblock %}
 
@@ -9,27 +9,23 @@
 <link rel="stylesheet" href="{% static 'css/pages/booking.css' %}">
 {% endblock %}
 
-{% block header %}
-<header class="appbar appbar--back">
-  <a href="{% url 'clinic:home' %}" class="icon-btn" aria-label="Назад">
-    {% icon 'arrow-left' 18 %}
-  </a>
-</header>
-{% endblock %}
-
 {% block content %}
 <section class="section page-section page-section--booking">
   <div class="booking-layout">
     <div class="booking-layout__main">
-      <span class="lime-tag" data-reveal>Онлайн-запис</span>
-      <h1 class="page-heading" data-reveal>Запис на прийом</h1>
-      <p class="page-lead-inline" data-reveal>Залиште заявку — адміністратор підтвердить час. Якщо на потрібний вам час уже є запис, адміністратором може бути запропонована найближча вільна дата та час згідно з вашим запитом.</p>
+      <header class="booking-intro" data-reveal>
+        <span class="lime-tag">Онлайн-запис</span>
+        <h1 class="page-heading">Запис на прийом</h1>
+        <p class="page-lead-inline">
+          Залиште заявку — адміністратор підтвердить час. Якщо на потрібний вам час уже є запис,
+          адміністратором може бути запропонована найближча вільна дата та час згідно з вашим запитом.
+        </p>
+      </header>
 
       <div id="booking-root" data-reveal data-reveal-delay="150">
         {% include 'bookings/partials/form.html' %}
       </div>
     </div>
-
   </div>
 </section>
 {% endblock %}

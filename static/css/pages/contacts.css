@@ -72,22 +72,45 @@
 
 .contact-block--page .contact-row {
   gap: 10px;
-  padding: 7px 0;
+  padding: 10px 0;
   border-top-color: var(--border);
 }
 
 .contact-block--page .contact-row .lab {
   font-size: 10px;
-  min-width: 50px;
+  min-width: 72px;
+  flex-shrink: 0;
   color: var(--muted);
 }
 
 .contact-block--page .contact-row .val {
   font-size: 13px;
+  line-height: 1.45;
   color: var(--graphite);
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+  -webkit-hyphens: auto;
   -webkit-text-size-adjust: 100%;
+}
+
+.contact-block--page .contact-row--stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px 0;
+}
+
+.contact-block--page .contact-row--stacked .lab {
+  min-width: 0;
+  padding-top: 0;
+}
+
+.contact-block--page .contact-row--stacked .val {
+  width: 100%;
+  max-width: 36ch;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .contact-block--page .contact-row a.val:hover {
@@ -243,6 +266,15 @@
     justify-content: center;
     width: 100%;
     max-width: 340px;
+  }
+
+  .contacts-layout > .contact-block:not(.contact-form-wrap) .contact-row--stacked {
+    align-items: center;
+    text-align: center;
+  }
+
+  .contacts-layout > .contact-block:not(.contact-form-wrap) .contact-row--stacked .val {
+    max-width: 40ch;
   }
 
   .map-embed {

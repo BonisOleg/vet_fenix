@@ -5,7 +5,7 @@
 
 {% block extrastyle %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}?v=20260706b">
+<link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}?v=20260708b">
 {% endblock %}
 
 {% block extrahead %}
@@ -13,10 +13,19 @@
 <style>
   .site-content-fieldset__fields .file-upload,
   .site-content-fieldset__fields input[type="file"] {
+    color: var(--admin-graphite, #1a1d23);
+  }
+
+  .dark .site-content-fieldset__fields .file-upload,
+  .dark .site-content-fieldset__fields input[type="file"] {
     color: rgb(var(--color-base-100) / 1);
   }
 
   .site-content-fieldset__fields .file-upload a {
+    color: rgb(var(--color-primary-600) / 1);
+  }
+
+  .dark .site-content-fieldset__fields .file-upload a {
     color: rgb(var(--color-primary-400) / 1);
   }
 </style>

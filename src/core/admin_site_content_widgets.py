@@ -6,22 +6,23 @@ from django.contrib.admin.widgets import AdminTextInputWidget, AdminTextareaWidg
 from django.forms import CheckboxInput, ClearableFileInput, FileInput, Select, SelectMultiple
 from unfold.widgets import INPUT_CLASSES, TEXTAREA_CLASSES
 
-_SKIP_CLASSES = frozenset(
+# Classes that forced always-dark inputs (legacy). Strip them so light theme works.
+_STRIP_CLASSES = frozenset(
     {
-        'bg-white',
-        'text-font-default-light',
-        'border-base-200',
-        'dark:bg-base-900',
-        'dark:border-base-700',
-        'dark:text-font-default-dark',
+        'bg-base-900',
+        'text-base-100',
+        'border-base-700',
     }
 )
 
-_FORCE_CLASSES = (
-    'bg-base-900',
-    'text-base-100',
-    'border-base-700',
+_THEME_CLASSES = (
+    'bg-white',
+    'text-font-default-light',
+    'border-base-200',
     'placeholder-base-400',
+    'dark:bg-base-900',
+    'dark:text-font-default-dark',
+    'dark:border-base-700',
 )
 
 _SKIP_WIDGET_TYPES = (
@@ -34,11 +35,20 @@ _SKIP_WIDGET_TYPES = (
 
 
 def cms_control_classes(base_classes: list[str], extra_class: str = '') -> str:
-    classes = [item for item in base_classes if item not in _SKIP_CLASSES]
-    classes.extend(_FORCE_CLASSES)
+    classes: list[str] = []
+    for item in base_classes:
+        if item in _STRIP_CLASSES:
+            continue
+        if item not in classes:
+            classes.append(item)
+    for token in _THEME_CLASSES:
+        if token not in classes:
+            classes.append(token)
     if extra_class:
         for token in extra_class.split():
-            if token not in _SKIP_CLASSES and token not in classes:
+            if token in _STRIP_CLASSES:
+                continue
+            if token not in classes:
                 classes.append(token)
     return ' '.join(classes)
 
@@ -89,9 +99,10 @@ def apply_readable_widget(widget):
         return widget
 
     css = attrs.get('class', '')
-    if 'bg-base-900' in css and 'bg-white' not in css:
-        return widget
-    if 'bg-white' not in css and 'text-font-default-light' not in css:
+    if not any(
+        token in css
+        for token in ('bg-white', 'bg-base-900', 'text-font-default-light', 'border-base-200')
+    ):
         return widget
 
     merged_attrs = dict(attrs)

@@ -24,12 +24,13 @@ class SiteContentAdminTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Показувати секцію на сайті')
         self.assertContains(response, 'hero_title')
-        self.assertContains(response, 'bg-base-900')
-        self.assertContains(response, 'text-base-100')
+        self.assertContains(response, 'bg-white')
+        self.assertContains(response, 'text-font-default-light')
+        self.assertContains(response, 'dark:bg-base-900')
         self.assertContains(response, 'site-content-fieldset__summary')
         self.assertContains(response, '<details')
 
-    def test_cms_text_inputs_have_no_white_background(self):
+    def test_cms_text_inputs_use_light_theme_classes(self):
         import re
 
         url = reverse('admin:core_homeherosettings_change', args=[1])
@@ -40,15 +41,21 @@ class SiteContentAdminTests(TestCase):
             html,
         )
         self.assertTrue(matches)
-        self.assertIn('bg-base-900', matches[0])
-        self.assertNotIn('bg-white', matches[0])
+        classes = matches[0]
+        self.assertIn('bg-white', classes)
+        self.assertIn('dark:bg-base-900', classes)
+        # Forced always-dark bg without dark: prefix must not appear alone as theme lock
+        tokens = classes.split()
+        self.assertIn('bg-white', tokens)
+        self.assertNotIn('text-base-100', tokens)
 
     def test_site_settings_form_uses_readable_inputs(self):
         url = reverse('admin:core_sitesettings_change', args=[1])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'bg-base-900')
-        self.assertContains(response, 'text-base-100')
+        self.assertContains(response, 'bg-white')
+        self.assertContains(response, 'text-font-default-light')
+        self.assertContains(response, 'dark:bg-base-900')
 
     def test_hero_section_save_updates_blocks(self):
         section = get_section('home', 'hero')

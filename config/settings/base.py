@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260706g')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708b')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -181,7 +181,12 @@ UNFOLD = {
     'SITE_TITLE': 'Адмін панель Фенікс',
     'SITE_HEADER': 'Адмін панель Фенікс',
     'SITE_SYMBOL': None,
-    'SITE_ICON': None,
+    'THEME': 'light',
+    'BORDER_RADIUS': '8px',
+    'SITE_ICON': {
+        'light': lambda request: versioned_static('images/brand-icon.png'),
+        'dark': lambda request: versioned_static('images/brand-icon.png'),
+    },
     'SITE_FAVICONS': [
         {
             'rel': 'icon',
@@ -268,18 +273,33 @@ UNFOLD = {
         ],
     },
     'COLORS': {
+        # Orange brand accent — primary buttons / focus
         'primary': {
-            '50': 'oklch(97.5% 0.02 55)',
-            '100': 'oklch(94% 0.05 52)',
-            '200': 'oklch(88% 0.10 50)',
-            '300': 'oklch(80% 0.14 48)',
-            '400': 'oklch(74% 0.17 46)',
-            '500': 'oklch(68% 0.19 44)',
-            '600': 'oklch(63% 0.19 42)',
-            '700': 'oklch(55% 0.17 40)',
-            '800': 'oklch(47% 0.14 38)',
-            '900': 'oklch(40% 0.12 36)',
-            '950': 'oklch(30% 0.10 34)',
+            '50': 'oklch(97% 0.02 45)',
+            '100': 'oklch(94% 0.04 45)',
+            '200': 'oklch(88% 0.08 45)',
+            '300': 'oklch(80% 0.12 45)',
+            '400': 'oklch(74% 0.15 45)',
+            '500': 'oklch(70% 0.18 45)',
+            '600': 'oklch(64% 0.17 42)',
+            '700': 'oklch(56% 0.15 40)',
+            '800': 'oklch(48% 0.12 38)',
+            '900': 'oklch(40% 0.10 36)',
+            '950': 'oklch(30% 0.08 34)',
+        },
+        # Graphite / cream-ish neutrals closer to site brand
+        'base': {
+            '50': 'oklch(98% 0.004 250)',
+            '100': 'oklch(96% 0.005 250)',
+            '200': 'oklch(92% 0.006 250)',
+            '300': 'oklch(86% 0.008 250)',
+            '400': 'oklch(70% 0.012 250)',
+            '500': 'oklch(55% 0.014 250)',
+            '600': 'oklch(45% 0.014 255)',
+            '700': 'oklch(35% 0.012 255)',
+            '800': 'oklch(28% 0.010 255)',
+            '900': 'oklch(22% 0.008 255)',
+            '950': 'oklch(16% 0.006 255)',
         },
     },
 }
