@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from unfold.widgets import UnfoldAdminFileFieldWidget, UnfoldBooleanWidget
 
-from core.admin_field_guides import get_block_help
+from core.admin_field_guides import get_block_help, get_guide
 from core.admin_site_content_widgets import CmsAdminTextInputWidget, CmsAdminTextareaWidget
 from core.block_defaults import (
     BLOCK_CONTENT_TYPES,
@@ -29,9 +29,16 @@ from core.site_content_registry import (
 
 SECTION_VISIBLE_FIELD = 'section_visible'
 
+SITE_SETTINGS_TEXTAREA_FIELDS = frozenset({'reassessment_hours_label'})
+SITE_SETTINGS_OPTIONAL_FIELDS = frozenset({'phone_secondary', 'email', 'reassessment_hours_label'})
+
 
 def block_field_name(page: str, key: str, suffix: str) -> str:
     return f'block__{page}__{key}__{suffix}'
+
+
+def setting_field_name(field_name: str) -> str:
+    return f'setting__{field_name}'
 
 
 def _block_content_type(page: str, key: str) -> str:
@@ -102,6 +109,52 @@ class SitePageContentForm(forms.Form):
         for page, key in section.blocks:
             block = blocks[(page, key)]
             self._add_block_fields(block)
+
+        for group in section.field_groups:
+            if group.settings_keys:
+                self._add_settings_fields(group.settings_keys)
+
+    def _add_settings_fields(self, settings_keys: tuple[str, ...]) -> None:
+        site = SiteSettings.load()
+        for field_name in settings_keys:
+            model_field = SiteSettings._meta.get_field(field_name)
+            initial = getattr(site, field_name)
+            help_text = get_guide('SiteSettings', field_name)
+            required = field_name not in SITE_SETTINGS_OPTIONAL_FIELDS
+
+            if field_name in SITE_SETTINGS_TEXTAREA_FIELDS:
+                widget = CmsAdminTextareaWidget(attrs={'rows': 3})
+                form_field = forms.CharField(
+                    label=model_field.verbose_name,
+                    initial=initial,
+                    required=required,
+                    widget=widget,
+                    help_text=help_text,
+                )
+            elif model_field.__class__.__name__ == 'EmailField':
+                widget = CmsAdminTextInputWidget()
+                form_field = forms.EmailField(
+                    label=model_field.verbose_name,
+                    initial=initial,
+                    required=required,
+                    widget=widget,
+                    help_text=help_text,
+                )
+            else:
+                widget = CmsAdminTextInputWidget()
+                form_kwargs = {
+                    'label': model_field.verbose_name,
+                    'initial': initial,
+                    'required': required,
+                    'widget': widget,
+                    'help_text': help_text,
+                }
+                max_length = getattr(model_field, 'max_length', None)
+                if max_length:
+                    form_kwargs['max_length'] = max_length
+                form_field = forms.CharField(**form_kwargs)
+
+            self.fields[setting_field_name(field_name)] = form_field
 
     def _visibility_page_key(self, section: ContentSection) -> tuple[str, str]:
         for page, key in iter_section_blocks(section):
@@ -198,6 +251,20 @@ class SitePageContentForm(forms.Form):
 
             block.save()
 
+        settings_keys: set[str] = set()
+        for group in self.section.field_groups:
+            settings_keys.update(group.settings_keys)
+        if settings_keys:
+            site = SiteSettings.load()
+            update_fields: list[str] = []
+            for field_name in settings_keys:
+                value = self.cleaned_data.get(setting_field_name(field_name), '')
+                if field_name in SITE_SETTINGS_OPTIONAL_FIELDS and value is None:
+                    value = ''
+                setattr(site, field_name, (value or '').strip() if isinstance(value, str) else value)
+                update_fields.append(field_name)
+            site.save(update_fields=update_fields)
+
         invalidate_site_blocks_cache()
 
 
@@ -234,12 +301,25 @@ def _bound_fields_for_keys(
     return fields
 
 
+def _bound_settings_for_keys(
+    form: SitePageContentForm,
+    keys: tuple[str, ...],
+) -> list[forms.BoundField]:
+    fields: list[forms.BoundField] = []
+    for key in keys:
+        name = setting_field_name(key)
+        if name in form.fields:
+            fields.append(form[name])
+    return fields
+
+
 def _section_fieldsets(form: SitePageContentForm, section: ContentSection) -> list[dict]:
     fieldsets: list[dict] = []
 
     if section.field_groups:
         for index, group in enumerate(section.field_groups):
             fields = _bound_fields_for_keys(form, section, group.block_keys)
+            fields.extend(_bound_settings_for_keys(form, group.settings_keys))
             if fields:
                 fieldsets.append(
                     {

@@ -11,7 +11,8 @@ from core.block_defaults import BLOCK_FIELD_LABELS
 @dataclass(frozen=True)
 class FieldGroup:
     title: str
-    block_keys: tuple[str, ...]
+    block_keys: tuple[str, ...] = ()
+    settings_keys: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -169,9 +170,23 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         sidebar_icon='location_on',
         preview_url='/kontakty/',
         admin_model_name='contactsclinicinfosettings',
+        description='Заголовок блоку, адреса, телефони, години роботи та текст про переоцінку.',
         visibility_key='clinic_section_visible',
         blocks=(('contacts', 'clinic_block_title'),),
-        field_groups=(FieldGroup('Заголовок блоку', ('clinic_block_title',)),),
+        field_groups=(
+            FieldGroup('Заголовок блоку', block_keys=('clinic_block_title',)),
+            FieldGroup(
+                'Контактні дані',
+                settings_keys=(
+                    'address',
+                    'phone_primary',
+                    'phone_secondary',
+                    'email',
+                    'hours_label',
+                    'reassessment_hours_label',
+                ),
+            ),
+        ),
     ),
     ContentSection(
         slug='contact-form',

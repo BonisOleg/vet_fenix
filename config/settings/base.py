@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708f')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708i')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -169,10 +169,13 @@ CONTENT_SECURITY_POLICY = {
 }
 
 TINYMCE_DEFAULT_CONFIG = {
-    'height': 400,
     'menubar': False,
-    'plugins': 'link lists image code',
+    'plugins': 'autoresize link lists image code',
     'toolbar': 'undo redo | bold italic underline | bullist numlist | link image | code',
+    'min_height': 120,
+    'max_height': 560,
+    'autoresize_bottom_margin': 12,
+    'resize': False,
     'content_css': False,
     'skin': 'oxide',
 }

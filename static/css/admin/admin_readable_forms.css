@@ -79,6 +79,39 @@
   color: rgb(var(--color-base-400) / 1);
 }
 
+.admin-site-icon__img,
+.admin-site-icon--fallback {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .admin-site-icon__img,
+  .admin-site-icon--fallback {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+#content .tox-tinymce {
+  border-radius: var(--border-radius, 8px);
+}
+
+#content .tox-tinymce .tox-editor-container {
+  min-height: 0;
+}
+
+#content textarea.tinymce {
+  min-height: 0;
+  height: 0;
+  padding: 0;
+  border: 0;
+  resize: none;
+  overflow: hidden;
+}
+
 .admin-layout-warning-wrap {
   width: 100%;
   max-width: 52rem;

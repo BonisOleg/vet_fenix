@@ -12,6 +12,7 @@
 .contact-block--page,
 .contact-form-wrap {
   --contact-ring: 2px;
+  --contact-label-col: 5.75rem;
   width: 100%;
   max-width: none;
   box-sizing: border-box;
@@ -71,46 +72,25 @@
 }
 
 .contact-block--page .contact-row {
-  gap: 10px;
   padding: 10px 0;
   border-top-color: var(--border);
 }
 
 .contact-block--page .contact-row .lab {
   font-size: 10px;
-  min-width: 72px;
-  flex-shrink: 0;
   color: var(--muted);
 }
 
 .contact-block--page .contact-row .val {
   font-size: 13px;
   line-height: 1.45;
+  font-weight: 600;
   color: var(--graphite);
-  overflow-wrap: break-word;
-  word-break: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   hyphens: auto;
   -webkit-hyphens: auto;
   -webkit-text-size-adjust: 100%;
-}
-
-.contact-block--page .contact-row--stacked {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  padding: 12px 0;
-}
-
-.contact-block--page .contact-row--stacked .lab {
-  min-width: 0;
-  padding-top: 0;
-}
-
-.contact-block--page .contact-row--stacked .val {
-  width: 100%;
-  max-width: 36ch;
-  font-weight: 600;
-  line-height: 1.5;
 }
 
 .contact-block--page .contact-row a.val:hover {
@@ -256,25 +236,23 @@
   }
 
   .contacts-layout > .contact-block:not(.contact-form-wrap) {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
     padding: 24px;
   }
 
-  .contacts-layout > .contact-block:not(.contact-form-wrap) .contact-row {
-    justify-content: center;
-    width: 100%;
-    max-width: 340px;
+  .contact-block--page {
+    --contact-label-col: 6.25rem;
   }
 
-  .contacts-layout > .contact-block:not(.contact-form-wrap) .contact-row--stacked {
-    align-items: center;
+  .contact-block--page .contact-block__title {
     text-align: center;
   }
 
-  .contacts-layout > .contact-block:not(.contact-form-wrap) .contact-row--stacked .val {
-    max-width: 40ch;
+  .contacts-layout > .contact-block:not(.contact-form-wrap) .contact-row {
+    width: 100%;
+    max-width: none;
   }
 
   .map-embed {

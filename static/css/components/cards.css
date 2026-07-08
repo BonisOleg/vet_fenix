@@ -8,13 +8,14 @@
   background: var(--paper);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  padding: 16px 14px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 28px;
   min-height: 116px;
   text-align: left;
   width: 100%;
+  box-sizing: border-box;
   transition: transform 0.12s ease, border-color 0.12s ease;
 }
 
@@ -347,9 +348,10 @@
 }
 
 .contact-row {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: var(--contact-label-col, 5.75rem) minmax(0, 1fr);
+  column-gap: 0.5rem;
+  align-items: start;
   padding: 10px 0;
   border-top: 1px solid rgba(246, 245, 240, 0.1);
   position: relative;
@@ -364,13 +366,22 @@
   color: rgba(246, 245, 240, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  min-width: 56px;
   padding-top: 2px;
+  white-space: nowrap;
+}
+
+.contact-row .lab::after {
+  content: ':';
 }
 
 .contact-row .val {
   font-size: 15px;
   font-weight: 600;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .contact-row .val small {

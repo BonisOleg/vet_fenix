@@ -81,6 +81,40 @@ class SiteContentAdminTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Показувати секцію на сайті')
 
+    def test_clinic_info_section_renders_contact_settings(self):
+        url = reverse('admin:core_contactsclinicinfosettings_change', args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'setting__reassessment_hours_label')
+        self.assertContains(response, 'Години переоцінки')
+
+    def test_clinic_info_section_saves_contact_settings(self):
+        section = get_section('contacts', 'clinic-info')
+        blocks = load_section_blocks(section)
+        payload = {'section_visible': 'on'}
+        for page, key in section.blocks:
+            block = blocks[(page, key)]
+            payload[f'block__{page}__{key}__text_html'] = block.text_html
+
+        payload.update(
+            {
+                'setting__address': 'м. Київ, тест',
+                'setting__phone_primary': '+380933839933',
+                'setting__phone_secondary': '',
+                'setting__email': '',
+                'setting__hours_label': 'Цілодобово',
+                'setting__reassessment_hours_label': '10:00–11:00 — тест',
+            }
+        )
+
+        url = reverse('admin:core_contactsclinicinfosettings_change', args=[1])
+        response = self.client.post(url, payload)
+        self.assertEqual(response.status_code, 302)
+
+        site = SiteSettings.load()
+        self.assertEqual(site.reassessment_hours_label, '10:00–11:00 — тест')
+        self.assertEqual(site.address, 'м. Київ, тест')
+
     def test_visibility_toggle_hides_hero_on_site(self):
         from django.core.cache import cache
         from core.context_processors import SITE_BLOCKS_CACHE_KEY
