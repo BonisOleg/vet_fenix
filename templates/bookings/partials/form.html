@@ -48,6 +48,12 @@
           {% if form.preferred_time.errors %}<p class="field-error">{{ form.preferred_time.errors.0 }}</p>{% endif %}
         </div>
       </div>
+      <p class="booking-form__hint">Якщо обраний час зайнятий, адміністратор запропонує найближчу вільну дату та час відповідно до вашого запиту.</p>
+      {% if site.reassessment_hours_label %}
+      <p class="booking-form__notice" role="note">
+        <strong>Години переоцінки:</strong> {{ site.reassessment_hours_label }}
+      </p>
+      {% endif %}
     </section>
 
     <section class="booking-form__card" aria-labelledby="booking-section-contact">
@@ -87,6 +93,6 @@
     <button type="submit" class="btn btn-primary btn-block btn-lg">
       Надіслати заявку
     </button>
-    <p class="booking-form__note">Адміністратор зателефонує для підтвердження запису.</p>
+    <p class="booking-form__note">Адміністратор зателефонує для підтвердження запису або запропонує найближчий вільний час.</p>
   </div>
 </form>

@@ -16,6 +16,12 @@
   <span class="lab">Години</span>
   <span class="val">{{ site.hours_label }}</span>
 </div>
+{% if site.reassessment_hours_label %}
+<div class="contact-row">
+  <span class="lab">Переоцінка</span>
+  <span class="val">{{ site.reassessment_hours_label }}</span>
+</div>
+{% endif %}
 {% if site.email %}
 <div class="contact-row">
   <span class="lab">Email</span>

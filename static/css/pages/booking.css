@@ -185,6 +185,31 @@
   color: var(--muted);
 }
 
+.booking-form__hint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.booking-form__notice {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--orange) 8%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--orange) 22%, var(--border));
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--graphite);
+}
+
+.booking-form__notice strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+  color: var(--graphite);
+}
+
 .booking-success {
   padding: 8px 0 24px;
   text-align: center;
@@ -282,6 +307,11 @@
 
   .booking-form__card {
     padding: 22px 20px 8px;
+  }
+
+  .booking-form__hint,
+  .booking-form__notice {
+    font-size: 13px;
   }
 
   .booking-form__actions {

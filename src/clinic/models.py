@@ -55,7 +55,6 @@ class Doctor(models.Model):
     experience_years = models.PositiveSmallIntegerField('Досвід (роки)')
     initials = models.CharField('Ініціали', max_length=8, blank=True)
     photo = models.ImageField('Фото', upload_to='doctors/', blank=True)
-    rating = models.DecimalField('Рейтинг', max_digits=2, decimal_places=1, default=4.9)
     patients_label = models.CharField(
         'Пацієнти',
         max_length=32,

@@ -85,6 +85,9 @@
 .contact-block--page .contact-row .val {
   font-size: 13px;
   color: var(--graphite);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-text-size-adjust: 100%;
 }
 
 .contact-block--page .contact-row a.val:hover {

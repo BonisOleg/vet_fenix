@@ -256,7 +256,6 @@
       "experience_years": 5,
       "initials": "ВВ",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 1,
       "is_active": true
@@ -272,7 +271,6 @@
       "experience_years": 5,
       "initials": "ОС",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 2,
       "is_active": true
@@ -288,7 +286,6 @@
       "experience_years": 5,
       "initials": "АВ",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 3,
       "is_active": true
@@ -304,7 +301,6 @@
       "experience_years": 5,
       "initials": "МВ",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 4,
       "is_active": true
@@ -320,7 +316,6 @@
       "experience_years": 5,
       "initials": "ЄО",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 5,
       "is_active": true
@@ -336,7 +331,6 @@
       "experience_years": 5,
       "initials": "ЛІ",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 6,
       "is_active": true
@@ -352,7 +346,6 @@
       "experience_years": 5,
       "initials": "ГО",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 7,
       "is_active": true
@@ -368,7 +361,6 @@
       "experience_years": 5,
       "initials": "ГА",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 8,
       "is_active": true
@@ -384,7 +376,6 @@
       "experience_years": 5,
       "initials": "ДС",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 9,
       "is_active": true
@@ -400,7 +391,6 @@
       "experience_years": 5,
       "initials": "СС",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 10,
       "is_active": true
@@ -416,7 +406,6 @@
       "experience_years": 5,
       "initials": "КС",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 11,
       "is_active": true
@@ -432,7 +421,6 @@
       "experience_years": 5,
       "initials": "ІЛ",
       "photo": "",
-      "rating": "4.9",
       "patients_label": "",
       "order": 12,
       "is_active": true

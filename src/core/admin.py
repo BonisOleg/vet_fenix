@@ -23,6 +23,7 @@ class SiteSettingsAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, Single
                     'tagline',
                     'trust_label',
                     'hours_label',
+                    'reassessment_hours_label',
                     'is_open_now',
                 ),
             },

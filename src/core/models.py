@@ -13,6 +13,11 @@ class SiteSettings(models.Model):
     is_open_now = models.BooleanField('Працюємо зараз', default=True)
     trust_label = models.CharField('Смуга довіри', max_length=64, default='Працюємо зараз')
     hours_label = models.CharField('Години роботи', max_length=64, default='Цілодобово')
+    reassessment_hours_label = models.TextField(
+        'Години переоцінки',
+        blank=True,
+        default='9:30–10:30 та 20:00–21:00 — прийом лише екстрених пацієнтів',
+    )
 
     class Meta:
         verbose_name = 'Налаштування сайту'

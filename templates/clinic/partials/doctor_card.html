@@ -1,4 +1,3 @@
-{% load vet_icons %}
 <article class="doc-card{% if card_variant == 'page' %} doc-card--page{% endif %}" data-reveal="emphasis"
   data-reveal-delay="{{ reveal_delay }}">
   <div class="doc-photo">
@@ -18,12 +17,6 @@
     <p class="doc-bio">{{ doctor.bio }}</p>
     {% endif %}
     {% endif %}
-    <div class="doc-meta">
-      <span class="doc-meta__rating">
-        {% icon 'star' 14 %}
-        <span>{{ doctor.rating|floatformat:1 }}</span>
-      </span>
-    </div>
     <a href="{% url 'bookings:booking' %}?doctor={{ doctor.slug }}" class="book-btn">
       Записатись
     </a>

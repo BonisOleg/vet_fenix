@@ -18,7 +18,6 @@ GUIDES: dict[str, str] = {
         f'JPG/PNG/WebP, до 5 МБ. На сайті відображається колом 112×112 px. '
         f'Автоматично конвертується в WebP. {IMAGE_WARNING}'
     ),
-    'Doctor.rating': 'Рейтинг від 0.0 до 5.0 (наприклад, 4.9).',
     'Doctor.patients_label': f'Макс. 32 символи (напр. «2400+ пацієнтів»). {LAYOUT_WARNING}',
     'Doctor.order': 'Порядок сортування в списку (менше — вище).',
     'Doctor.is_active': 'Зняти прапорець, щоб приховати лікаря на сайті.',
@@ -51,6 +50,10 @@ GUIDES: dict[str, str] = {
     'SiteSettings.email': 'Електронна пошта клініки.',
     'SiteSettings.trust_label': f'Макс. 64 символи — смуга довіри. {LAYOUT_WARNING}',
     'SiteSettings.hours_label': f'Макс. 64 символи — години роботи. {LAYOUT_WARNING}',
+    'SiteSettings.reassessment_hours_label': (
+        'Години переоцінки для контактів і сторінки запису. '
+        'Наприклад: «9:30–10:30 та 20:00–21:00 — прийом лише екстрених пацієнтів».'
+    ),
     'SiteSettings.is_open_now': 'Показувати «Працюємо зараз» у смузі довіри.',
 }
 
