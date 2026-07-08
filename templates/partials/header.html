@@ -3,15 +3,15 @@
   <div class="appbar-inner{% if site_nav_primary|length < 4 %} appbar-inner--nav-compact{% endif %}">
     <a href="{% url 'clinic:home' %}" class="logo">
       {% if site.logo %}
-      <img src="{{ site.logo.url }}" alt="{{ site.clinic_name_line2 }}" class="logo-img" width="40" height="40">
+      <img src="{{ site.logo.url }}" alt="{{ site.clinic_name_line2 }}" class="logo-img" width="48" height="48">
       {% else %}
       <img
         src="{% static_v 'images/brand-icon.png' %}"
         srcset="{% static_v 'images/brand-icon@2x.png' %} 2x"
         alt="{{ site.clinic_name_line2 }}"
         class="logo-img"
-        width="40"
-        height="40"
+        width="48"
+        height="48"
       >
       {% endif %}
       <div class="brand-text">
