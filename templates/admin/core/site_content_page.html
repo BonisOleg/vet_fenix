@@ -1,11 +1,11 @@
 {% extends "admin/base_site.html" %}
-{% load i18n static unfold %}
+{% load i18n static unfold vet_static %}
 
 {% block title %}{{ title }} · {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block extrastyle %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}?v=20260708b">
+<link rel="stylesheet" href="{% static_v 'css/admin/site_content.css' %}">
 {% endblock %}
 
 {% block extrahead %}

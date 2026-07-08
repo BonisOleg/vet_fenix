@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708b')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708d')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -181,8 +181,7 @@ UNFOLD = {
     'SITE_TITLE': 'Адмін панель Фенікс',
     'SITE_HEADER': 'Адмін панель Фенікс',
     'SITE_SYMBOL': None,
-    'THEME': 'light',
-    'BORDER_RADIUS': '8px',
+    'BORDER_RADIUS': '10px',
     'SITE_ICON': {
         'light': lambda request: versioned_static('images/brand-icon.png'),
         'dark': lambda request: versioned_static('images/brand-icon.png'),
@@ -273,33 +272,18 @@ UNFOLD = {
         ],
     },
     'COLORS': {
-        # Orange brand accent — primary buttons / focus
         'primary': {
-            '50': 'oklch(97% 0.02 45)',
-            '100': 'oklch(94% 0.04 45)',
-            '200': 'oklch(88% 0.08 45)',
-            '300': 'oklch(80% 0.12 45)',
-            '400': 'oklch(74% 0.15 45)',
-            '500': 'oklch(70% 0.18 45)',
-            '600': 'oklch(64% 0.17 42)',
-            '700': 'oklch(56% 0.15 40)',
-            '800': 'oklch(48% 0.12 38)',
-            '900': 'oklch(40% 0.10 36)',
-            '950': 'oklch(30% 0.08 34)',
-        },
-        # Graphite / cream-ish neutrals closer to site brand
-        'base': {
-            '50': 'oklch(98% 0.004 250)',
-            '100': 'oklch(96% 0.005 250)',
-            '200': 'oklch(92% 0.006 250)',
-            '300': 'oklch(86% 0.008 250)',
-            '400': 'oklch(70% 0.012 250)',
-            '500': 'oklch(55% 0.014 250)',
-            '600': 'oklch(45% 0.014 255)',
-            '700': 'oklch(35% 0.012 255)',
-            '800': 'oklch(28% 0.010 255)',
-            '900': 'oklch(22% 0.008 255)',
-            '950': 'oklch(16% 0.006 255)',
+            '50': '#FFF6F1',
+            '100': '#FFE4D6',
+            '200': '#FFC9AD',
+            '300': '#FFA57A',
+            '400': '#FF8F5E',
+            '500': '#FF7A45',
+            '600': '#E86632',
+            '700': '#C95524',
+            '800': '#A3441C',
+            '900': '#7D3315',
+            '950': '#5A2410',
         },
     },
 }

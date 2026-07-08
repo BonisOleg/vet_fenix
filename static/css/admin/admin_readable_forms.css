@@ -1,35 +1,23 @@
-/* Brand accents: lime (sidebar/toggle), orange stays as Unfold primary */
+/* Phoenix admin — light default, lime + orange accents, Unfold-compatible tokens */
 
 :root {
   --admin-lime: #d4f08a;
   --admin-lime-dark: #c4e676;
+  --admin-lime-soft: #eff6c8;
+  --admin-orange: #ff7a45;
+  --admin-orange-soft: #ffe4d6;
   --admin-graphite: #1a1d23;
   --admin-muted: #6b6f76;
   --admin-border: #e8e7e1;
   --admin-paper: #ffffff;
   --admin-cream: #f7f6f2;
+  --admin-panel-radius: calc(var(--border-radius, 8px) + 4px);
   --admin-field-height: 2.75rem;
-  --admin-field-radius: 0.5rem;
   --admin-field-font: 0.875rem;
   --admin-help-font: 0.8125rem;
 }
 
-/* Light panels inside change form */
-#content .flex-row > .border,
-#content .flex-row > [class*='border-base'] {
-  color: var(--admin-graphite);
-  background-color: var(--admin-paper);
-  border-color: var(--admin-border);
-}
-
-.dark #content .flex-row > .border,
-.dark #content .flex-row > [class*='border-base'] {
-  color: rgb(var(--color-base-100) / 1);
-  background-color: rgb(var(--color-base-900) / 1);
-  border-color: rgb(var(--color-base-700) / 1);
-}
-
-/* Uniform text / textarea / select sizes */
+/* Text fields — uniform size, do not touch checkboxes/radios */
 #content input[type='text'],
 #content input[type='email'],
 #content input[type='url'],
@@ -45,7 +33,7 @@
   box-sizing: border-box;
   min-height: var(--admin-field-height);
   padding: 0.625rem 0.875rem;
-  border-radius: var(--admin-field-radius);
+  border-radius: var(--border-radius, 8px);
   font-size: var(--admin-field-font);
   line-height: 1.4;
   font-weight: 500;
@@ -57,31 +45,23 @@
   resize: vertical;
 }
 
-#content input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='hidden']),
-#content select,
-#content textarea {
-  background-color: var(--admin-paper);
-  color: var(--admin-graphite);
-  border-color: var(--admin-border);
-}
-
-.dark #content input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='hidden']),
-.dark #content select,
-.dark #content textarea {
-  background-color: rgb(var(--color-base-900) / 1);
-  color: rgb(var(--color-base-100) / 1);
-  border-color: rgb(var(--color-base-700) / 1);
+#content input[type='checkbox'],
+#content input[type='radio'] {
+  min-height: unset;
+  padding: unset;
+  width: auto;
+  box-shadow: none;
 }
 
 #content input:focus:not([type='checkbox']):not([type='radio']):not([type='file']),
 #content select:focus,
 #content textarea:focus {
   border-color: rgb(var(--color-primary-500) / 1);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--admin-lime) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--admin-lime) 50%, transparent);
   outline: none;
 }
 
-/* Help / instruction text under fields */
+/* Help / instruction text */
 #content .group .leading-relaxed,
 #content .help,
 #content .helptext,
@@ -99,26 +79,12 @@
   color: rgb(var(--color-base-400) / 1);
 }
 
-/* Labels */
-#content label,
-#content .group label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.35;
-  color: var(--admin-graphite);
-}
-
-.dark #content label,
-.dark #content .group label {
-  color: rgb(var(--color-base-100) / 1);
-}
-
 .admin-layout-warning {
   margin: 0 0 1rem;
   padding: 0.875rem 1rem;
-  border: 1px solid color-mix(in srgb, rgb(var(--color-primary-500) / 1) 40%, var(--admin-border));
-  border-radius: var(--admin-field-radius);
-  background: color-mix(in srgb, var(--admin-lime) 28%, var(--admin-cream));
+  border: 1px solid color-mix(in srgb, var(--admin-orange) 35%, var(--admin-border));
+  border-radius: var(--admin-panel-radius);
+  background: color-mix(in srgb, var(--admin-lime) 30%, var(--admin-cream));
   color: var(--admin-graphite);
   font-size: var(--admin-help-font);
   line-height: 1.5;
@@ -126,7 +92,7 @@
 
 .dark .admin-layout-warning {
   border-color: rgb(var(--color-primary-600) / 0.35);
-  background: rgb(var(--color-primary-600) / 0.08);
+  background: rgb(var(--color-primary-600) / 0.1);
   color: rgb(var(--color-base-100) / 1);
 }
 
@@ -134,25 +100,35 @@
   margin: 0;
 }
 
-/* Lime accents: active sidebar / toggles */
-aside [aria-current='page'],
-aside a[class*='bg-primary'],
-nav a.bg-primary-600,
-nav a[class*='bg-primary-600'] {
+/* Orange primary actions */
+#content .submit-row input[type='submit'],
+#content button[type='submit'].bg-primary-600,
+.site-content-editor__actions .bg-primary-600 {
+  background-color: var(--admin-orange);
+  border-color: var(--admin-orange);
+}
+
+#content .submit-row input[type='submit']:hover,
+.site-content-editor__actions .bg-primary-600:hover {
+  background-color: color-mix(in srgb, var(--admin-orange) 88%, #000);
+}
+
+/* Lime accent — active sidebar item */
+aside nav a.bg-primary-600,
+aside nav a[class*='bg-primary-600'] {
   background-color: var(--admin-lime);
   color: var(--admin-graphite);
 }
 
-aside [aria-current='page']:hover,
-aside a[class*='bg-primary']:hover {
+aside nav a.bg-primary-600:hover,
+aside nav a[class*='bg-primary-600']:hover {
   background-color: var(--admin-lime-dark);
   color: var(--admin-graphite);
 }
 
-/* Toggle / switch “on” soft lime when present */
-#content [role='switch'][aria-checked='true'],
-#content input[type='checkbox']:checked {
-  accent-color: rgb(var(--color-primary-500) / 1);
+/* Theme switcher — orange active option */
+.text-primary-600.dark\:text-primary-500 {
+  color: var(--admin-orange);
 }
 
 @media (max-width: 767px) {
