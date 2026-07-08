@@ -2,7 +2,7 @@
 
 {% if site_icon %}
     <div class="admin-site-icon shrink-0">
-        <a href="{% url "admin:index" %}">
+        <a href="{% url "admin:index" %}" class="admin-site-icon__link">
             {% if site_icon.light and site_icon.dark %}
                 <img src="{{ site_icon.dark }}" alt="{% trans 'Home' %}" class="admin-site-icon__img hidden dark:block"/>
 
@@ -18,13 +18,13 @@
     </a>
 {% endif %}
 
-<div class="flex flex-col grow justify-center min-w-0">
-    <div class="text-important tracking-tight *:truncate {% if site_subheader %}xl:text-sm{% else %}xl:text-base{% endif %}">
-        {{ branding }}
-    </div>
+<div class="admin-site-branding flex flex-col grow justify-center min-w-0">
+    <a href="{% url "admin:index" %}" class="admin-site-branding__title">
+        {{ site_header|default:branding }}
+    </a>
 
     {% if site_subheader %}
-        <div class="font-normal text-subtle text-xs truncate">
+        <div class="admin-site-branding__subtitle">
             {{ site_subheader }}
         </div>
     {% endif %}

@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708i')
+STATIC_ASSET_VERSION = config('STATIC_ASSET_VERSION', default='20260708j')
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -185,6 +185,9 @@ UNFOLD = {
     'SITE_HEADER': 'Адмін панель Фенікс',
     'SITE_SYMBOL': None,
     'BORDER_RADIUS': '10px',
+    'STYLES': [
+        lambda request: versioned_static('css/admin/admin_readable_forms.css'),
+    ],
     'SITE_ICON': {
         'light': lambda request: versioned_static('images/brand-icon.png'),
         'dark': lambda request: versioned_static('images/brand-icon.png'),
