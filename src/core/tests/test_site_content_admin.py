@@ -86,7 +86,7 @@ class SiteContentAdminTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'setting__reassessment_hours_label')
-        self.assertContains(response, 'Години переоцінки')
+        self.assertContains(response, 'Час зміни лікарів')
 
     def test_clinic_info_section_saves_contact_settings(self):
         section = get_section('contacts', 'clinic-info')

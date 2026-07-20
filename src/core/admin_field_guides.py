@@ -51,7 +51,7 @@ GUIDES: dict[str, str] = {
     'SiteSettings.trust_label': f'Макс. 64 символи — смуга довіри. {LAYOUT_WARNING}',
     'SiteSettings.hours_label': f'Макс. 64 символи — години роботи. {LAYOUT_WARNING}',
     'SiteSettings.reassessment_hours_label': (
-        'Години переоцінки для контактів і сторінки запису. '
+        'Час зміни лікарів для контактів і сторінки запису. '
         'Наприклад: «9:30–10:30 та 20:00–21:00 — прийом лише екстрених пацієнтів».'
     ),
     'SiteSettings.is_open_now': 'Показувати «Працюємо зараз» у смузі довіри.',

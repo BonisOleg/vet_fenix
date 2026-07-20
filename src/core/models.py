@@ -14,7 +14,7 @@ class SiteSettings(models.Model):
     trust_label = models.CharField('Смуга довіри', max_length=64, default='Працюємо зараз')
     hours_label = models.CharField('Години роботи', max_length=64, default='Цілодобово')
     reassessment_hours_label = models.TextField(
-        'Години переоцінки',
+        'Час зміни лікарів',
         blank=True,
         default='9:30–10:30 та 20:00–21:00 — прийом лише екстрених пацієнтів',
     )
