@@ -396,6 +396,17 @@
   color: var(--lime);
 }
 
+.contact-row--long {
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0.35rem;
+}
+
+.contact-row--long .lab {
+  white-space: normal;
+  line-height: 1.35;
+  max-width: 100%;
+}
+
 @media (max-width: 767px) {
   .docs-grid:not(.docs-grid--page) {
     scroll-snap-type: x mandatory;
