@@ -38,11 +38,6 @@ class ServiceAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, ModelAdmin)
         ),
     )
 
-    def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name == 'full_description':
-            kwargs['widget'] = TinyMCE()
-        return super().formfield_for_dbfield(db_field, request, **kwargs)
-
 
 @admin.register(Doctor)
 class DoctorAdmin(AdminFieldGuidesMixin, ReadableUnfoldFieldsMixin, ModelAdmin):
